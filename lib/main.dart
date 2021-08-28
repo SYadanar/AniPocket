@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
 class Anime extends StatefulWidget {
   const Anime({ Key? key }) : super(key: key);
 
