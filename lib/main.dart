@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:anime_app/router/router.gr.dart';
 
-void main() => runApp(Anime());
+void main() => runApp(MyApp());
 
-class Anime extends StatefulWidget {
-  const Anime({ Key? key }) : super(key: key);
+class MyApp extends StatelessWidget {
+  final appRouter=MyAppRouter();
 
-  @override
-  _AnimeState createState() => _AnimeState();
-}
-
-class _AnimeState extends State<Anime> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    
+    return MaterialApp.router(
+      title: 'Material App',
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(), 
       
     );
   }
 }
-
+ 
