@@ -2,6 +2,19 @@
 
 A new Flutter project.
 
+## Pages to Code
+1.  Welcome Page
+2.  User Sign Page
+3.  User Register Page
+4.  Home Page
+5.  Genres Page
+6.  [Current Year] Releases Page
+7.  User Favourites Page
+8.  Movie Detail Page
+9.  Characters Page
+10.  User Profile Page
+11.  Update User Password Page
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
