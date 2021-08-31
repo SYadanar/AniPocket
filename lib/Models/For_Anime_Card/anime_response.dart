@@ -20,7 +20,7 @@ class AnimeResponse {
 @JsonSerializable()
 class AnimeData {
   final String id;
-  final Link links;
+  final SelfLinks links;
   final Attribute attributes;
   final Relationship relationships;
 
@@ -33,12 +33,13 @@ class AnimeData {
 }
 
 @JsonSerializable()
-class Link {
+class SelfLinks {
   final String self;
 
-  const Link(this.self);
+  const SelfLinks(this.self);
 
-  factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
+  factory SelfLinks.fromJson(Map<String, dynamic> json) =>
+      _$SelfLinksFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LinkToJson(this);
+  Map<String, dynamic> toJson() => _$SelfLinksToJson(this);
 }
