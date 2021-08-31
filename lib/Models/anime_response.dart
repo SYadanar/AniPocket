@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'anime.dart';
+
 part 'anime_response.g.dart';
 
 @JsonSerializable()
@@ -8,21 +10,10 @@ class AnimeResponse{
 
    const AnimeResponse(this.data);
 
-   factory AnimeResponse.fromJson(Map<String, dynamic> json) => _$AnimeResponse
-  FromJson(json);
+   factory AnimeResponse.fromJson(Map<String, dynamic> json) => 
+   _$AnimeResponseFromJson(json);
 
    Map<String, dynamic> toJson() => _$AnimeResponseToJson(this);
+
 }
 
-@JsonSerializable()
-class Anime{
-   @JsonKey(name:'')
-   final value value;
-
-   const Anime();
-
-   factory Anime.fromJson(Map<String, dynamic> json) => 
-   _$AnimeFromJson(json);
-
-   Map<String, dynamic> toJson() => _$AnimeToJson(this);
-}
