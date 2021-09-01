@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(), 
-      
+      debugShowCheckedModeBanner: false,
     );
   }
 }
