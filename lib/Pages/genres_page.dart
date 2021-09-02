@@ -18,14 +18,9 @@ class _GenrePageState extends State<GenrePage> {
 
   @override
   void initState() {
-    // String encoded = Uri.encodeQueryComponent(
-    //     "fields[genres]=name&page[limit]=10&page[offset]=0");
-    // print(encoded);
-
-    ApiService().getGenreList(0).then((value) => print(value.toString()));
+    // ApiService().getGenreList(0).then((value) => print(value.toString()));
 
     _pagingController.addPageRequestListener((pageKey) {
-      print("Page Key ..... $pageKey");
       _fetchPage(pageKey);
     });
 
@@ -36,8 +31,10 @@ class _GenrePageState extends State<GenrePage> {
     try {
       final response = await ApiService().getGenreList(pageKey);
 
-      final bool isLastPage = response.meta.count == pageKey;
+      final bool isLastPage = response.meta.count <= pageKey;
+      print("count: ${response.meta.count}");
       print("Is last : $isLastPage");
+      print("pageKey : $pageKey");
       if (isLastPage) {
         _pagingController.appendLastPage(response.data);
       } else {
@@ -59,7 +56,10 @@ class _GenrePageState extends State<GenrePage> {
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<GenreList>(
             itemBuilder: (context, genereList, index) {
-          return Text(genereList.id + " : " + genereList.attributes.name);
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+            child: Text(genereList.id + " : " + genereList.attributes.name),
+          );
         }),
       ),
     );

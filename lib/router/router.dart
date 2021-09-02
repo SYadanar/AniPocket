@@ -4,9 +4,9 @@ import 'package:anime_app/Pages/pages.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
+    AutoRoute(page: HomePage),
     AutoRoute(page: AnimeDetailPage),
-    AutoRoute(page: WelcomePage),
+    AutoRoute(page: WelcomePage, initial: true),
     AutoRoute(page: CharactersPage),
     AutoRoute(page: FavouritePage),
     AutoRoute(page: GenrePage),
