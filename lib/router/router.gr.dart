@@ -77,10 +77,10 @@ class MyAppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/home-page'),
         _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
-        _i1.RouteConfig(WelcomeRoute.name, path: '/'),
+        _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
         _i1.RouteConfig(FavouriteRoute.name, path: '/favourite-page'),
-        _i1.RouteConfig(GenreRoute.name, path: '/genre-page'),
+        _i1.RouteConfig(GenreRoute.name, path: '/'),
         _i1.RouteConfig(PasswordRoute.name, path: '/password-page'),
         _i1.RouteConfig(ReleasesRoute.name, path: '/releases-page'),
         _i1.RouteConfig(UserProfileRoute.name, path: '/user-profile-page'),
@@ -111,7 +111,7 @@ class AnimeDetailRoute extends _i1.PageRouteInfo {
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo {
-  const WelcomeRoute() : super(name, path: '/');
+  const WelcomeRoute() : super(name, path: '/welcome-page');
 
   static const String name = 'WelcomeRoute';
 }
@@ -129,7 +129,7 @@ class FavouriteRoute extends _i1.PageRouteInfo {
 }
 
 class GenreRoute extends _i1.PageRouteInfo {
-  const GenreRoute() : super(name, path: '/genre-page');
+  const GenreRoute() : super(name, path: '/');
 
   static const String name = 'GenreRoute';
 }

@@ -4,17 +4,15 @@ import 'package:anime_app/router/router.gr.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final appRouter=MyAppRouter();
+  final appRouter = MyAppRouter();
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp.router(
       title: 'Material App',
       routerDelegate: appRouter.delegate(),
-      routeInformationParser: appRouter.defaultRouteParser(), 
+      routeInformationParser: appRouter.defaultRouteParser(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
- 

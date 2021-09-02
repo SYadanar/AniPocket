@@ -1,10 +1,53 @@
+import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
+import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class GenrePage extends StatelessWidget {
+class GenrePage extends StatefulWidget {
   const GenrePage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  _GenrePageState createState() => _GenrePageState();
+}
+
+class _GenrePageState extends State<GenrePage> {
+  final PagingController<int, GenreList> _pagingController =
+      PagingController(firstPageKey: 0);
+
+  @override
+  void initState() {
+    // String encoded = Uri.encodeQueryComponent(
+    //     "fields[genres]=name&page[limit]=10&page[offset]=0");
+    // print(encoded);
+
+    ApiService().getGenreList(0).then((value) => print(value.toString()));
+
+    _pagingController.addPageRequestListener((pageKey) {
+      print("Page Key ..... $pageKey");
+      _fetchPage(pageKey);
+    });
+
+    super.initState();
+  }
+
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      final response = await ApiService().getGenreList(pageKey);
+
+      final bool isLastPage = response.meta.count == pageKey;
+      print("Is last : $isLastPage");
+      if (isLastPage) {
+        _pagingController.appendLastPage(response.data);
+      } else {
+        final int nextPageKey = pageKey + 10;
+        _pagingController.appendPage(response.data, nextPageKey);
+      }
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,473 +55,30 @@ class GenrePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Genres'),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 40,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Action',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Comedy',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Slice of Life',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Drama',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Romance',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Psychological',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'History',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Mecha',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Supernatural',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Adventure',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Fantasy',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Magic',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Horror',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Mystery',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 40,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Sci-Fi',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    //AutoRouter.of(context).push(DetailRoute(id: 2));
-                    //AutoRouter.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white, onPrimary: Colors.blue),
-                  child: Container(
-                      height: 30,
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Ecchi',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: PagedListView<int, GenreList>(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<GenreList>(
+            itemBuilder: (context, genereList, index) {
+          return Text(genereList.id + " : " + genereList.attributes.name);
+        }),
       ),
     );
   }
 }
+
+
 /*Card(
-                  child: Container(
-                      height: 30,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Action',
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      )),
-                ),*/
+  child: Container(
+      height: 30,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Text(
+              'Action',
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
+      )),
+),*/
