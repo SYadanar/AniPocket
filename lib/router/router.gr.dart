@@ -42,11 +42,6 @@ class MyAppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.FavouritePage();
         }),
-    GenreRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i3.GenrePage();
-        }),
     PasswordRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -72,15 +67,6 @@ class MyAppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.UserSignUpPage();
         }),
-    GenreDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<GenreDetailRouteArgs>();
-          return _i3.GenreDetailPage(
-              key: args.key,
-              clickedUrl: args.clickedUrl,
-              clickedGenreName: args.clickedGenreName);
-        }),
     CategoryListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -104,13 +90,11 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
         _i1.RouteConfig(FavouriteRoute.name, path: '/favourite-page'),
-        _i1.RouteConfig(GenreRoute.name, path: '/genre-page'),
         _i1.RouteConfig(PasswordRoute.name, path: '/password-page'),
         _i1.RouteConfig(ReleasesRoute.name, path: '/releases-page'),
         _i1.RouteConfig(UserProfileRoute.name, path: '/user-profile-page'),
         _i1.RouteConfig(UserSignInRoute.name, path: '/user-sign-in-page'),
         _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
-        _i1.RouteConfig(GenreDetailRoute.name, path: '/genre-detail-page'),
         _i1.RouteConfig(CategoryListRoute.name, path: '/'),
         _i1.RouteConfig(CategoryRelatedAnimeRoute.name,
             path: '/category-related-anime-page')
@@ -156,12 +140,6 @@ class FavouriteRoute extends _i1.PageRouteInfo {
   static const String name = 'FavouriteRoute';
 }
 
-class GenreRoute extends _i1.PageRouteInfo {
-  const GenreRoute() : super(name, path: '/genre-page');
-
-  static const String name = 'GenreRoute';
-}
-
 class PasswordRoute extends _i1.PageRouteInfo {
   const PasswordRoute() : super(name, path: '/password-page');
 
@@ -190,32 +168,6 @@ class UserSignUpRoute extends _i1.PageRouteInfo {
   const UserSignUpRoute() : super(name, path: '/user-sign-up-page');
 
   static const String name = 'UserSignUpRoute';
-}
-
-class GenreDetailRoute extends _i1.PageRouteInfo<GenreDetailRouteArgs> {
-  GenreDetailRoute(
-      {_i2.Key? key,
-      required String clickedUrl,
-      required String clickedGenreName})
-      : super(name,
-            path: '/genre-detail-page',
-            args: GenreDetailRouteArgs(
-                key: key,
-                clickedUrl: clickedUrl,
-                clickedGenreName: clickedGenreName));
-
-  static const String name = 'GenreDetailRoute';
-}
-
-class GenreDetailRouteArgs {
-  const GenreDetailRouteArgs(
-      {this.key, required this.clickedUrl, required this.clickedGenreName});
-
-  final _i2.Key? key;
-
-  final String clickedUrl;
-
-  final String clickedGenreName;
 }
 
 class CategoryListRoute extends _i1.PageRouteInfo {

@@ -1,4 +1,5 @@
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
+import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:auto_route/auto_route.dart';
@@ -52,6 +53,9 @@ class _CategoryListPageState extends State<CategoryListPage> {
       appBar: AppBar(
         title: Text('Genres'),
       ),
+      drawer: Drawer(
+        child: DrawerList(),
+      ),
       body: PagedGridView<int, CategoryList>(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -64,8 +68,8 @@ class _CategoryListPageState extends State<CategoryListPage> {
             itemBuilder: (context, categoryList, index) {
           return InkWell(
             onTap: () {
-              print(
-                  "You tapped on ${categoryList.relationships.anime.links.related}");
+              // print(
+              // "You tapped on ${categoryList.relationships.anime.links.related}");
               AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
                   clickedUrl: categoryList.relationships.anime.links.related,
                   clickedGenreName: categoryList.attributes.title));
