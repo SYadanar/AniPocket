@@ -1,3 +1,4 @@
+import 'package:anime_app/Pages/category_list_page.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:anime_app/Pages/pages.dart';
 
@@ -6,7 +7,7 @@ import 'package:anime_app/Pages/pages.dart';
   routes: <AutoRoute>[
     AutoRoute(page: HomePage),
     AutoRoute(page: AnimeDetailPage),
-    AutoRoute(page: WelcomePage, initial: true),
+    AutoRoute(page: WelcomePage),
     AutoRoute(page: CharactersPage),
     AutoRoute(page: FavouritePage),
     AutoRoute(page: GenrePage),
@@ -15,6 +16,9 @@ import 'package:anime_app/Pages/pages.dart';
     AutoRoute(page: UserProfilePage),
     AutoRoute(page: UserSignInPage),
     AutoRoute(page: UserSignUpPage),
+    AutoRoute(page: GenreDetailPage),
+    AutoRoute(page: CategoryListPage, initial: true),
+    AutoRoute(page: CategoryDetailPage),
   ],
 )
 class $MyAppRouter {}

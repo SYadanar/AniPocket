@@ -5,32 +5,48 @@ class AnimeCardForGenres extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("hi");
-      },
-      child: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-          ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              padding: EdgeInsets.only(left: 140, top: 10, bottom: 10),
-              width: MediaQuery.of(context).size.width,
-              height: 117,
+    return Container(
+      width: double.infinity,
+      height: 156,
+      // decoration: BoxDecoration(
+      //   color: Colors.white,
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: Colors.black.withOpacity(0.25),
+      //       spreadRadius: 0,
+      //       blurRadius: 10,
+      //       offset: Offset(3, 3),
+      //     ),
+      //   ],
+      // ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              width: 115,
+              height: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.25),
                     spreadRadius: 0,
                     blurRadius: 10,
-                    offset: Offset(3, 3),
+                    offset: Offset(3, 0),
                   ),
                 ],
               ),
+              child: Image.asset(
+                'assets/images/sample_poster.jpg',
+                // fit: BoxFit.fill,
+                alignment: Alignment.centerLeft,
+              ),
+            ),
+            Container(
+              color: Colors.blue,
+              height: 117,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,26 +95,8 @@ class AnimeCardForGenres extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          Container(
-            width: 115,
-            height: 156,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
-                  spreadRadius: 0,
-                  blurRadius: 10,
-                  offset: Offset(3, 0),
-                ),
-              ],
-            ),
-            child: Image.asset(
-              'assets/images/sample_poster.jpg',
-              fit: BoxFit.fill,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

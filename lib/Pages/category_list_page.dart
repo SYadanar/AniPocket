@@ -1,24 +1,24 @@
-import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
+import 'package:anime_app/Models/For_Category/category_list_response.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class GenrePage extends StatefulWidget {
-  const GenrePage({Key? key}) : super(key: key);
+class CategoryListPage extends StatefulWidget {
+  const CategoryListPage({Key? key}) : super(key: key);
 
   @override
-  _GenrePageState createState() => _GenrePageState();
+  _CategoryListPageState createState() => _CategoryListPageState();
 }
 
-class _GenrePageState extends State<GenrePage> {
-  final PagingController<int, GenreList> _pagingController =
+class _CategoryListPageState extends State<CategoryListPage> {
+  final PagingController<int, CategoryList> _pagingController =
       PagingController(firstPageKey: 0);
 
   @override
   void initState() {
-    // ApiService().getGenreList(0).then((value) => print(value.toString()));
+    ApiService().getCategoryList(0).then((value) => print(value.toString()));
 
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
@@ -29,7 +29,7 @@ class _GenrePageState extends State<GenrePage> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final response = await ApiService().getGenreList(pageKey);
+      final response = await ApiService().getCategoryList(pageKey);
 
       final bool isLastPage = response.meta.count <= pageKey;
       // print("count: ${response.meta.count}");
@@ -52,7 +52,7 @@ class _GenrePageState extends State<GenrePage> {
       appBar: AppBar(
         title: Text('Genres'),
       ),
-      body: PagedGridView<int, GenreList>(
+      body: PagedGridView<int, CategoryList>(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           childAspectRatio: 3,
@@ -60,14 +60,14 @@ class _GenrePageState extends State<GenrePage> {
           crossAxisSpacing: 10,
         ),
         pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<GenreList>(
-            itemBuilder: (context, genereList, index) {
+        builderDelegate: PagedChildBuilderDelegate<CategoryList>(
+            itemBuilder: (context, categoryList, index) {
           return InkWell(
             onTap: () {
               // print("You tapped on ${genereList.links.self}");
-              AutoRouter.of(context).push(GenreDetailRoute(
-                  clickedUrl: genereList.links.self,
-                  clickedGenreName: genereList.attributes.name));
+              AutoRouter.of(context).push(CategoryDetailRoute(
+                  clickedUrl: categoryList.relationships.anime.links.related,
+                  clickedGenreName: categoryList.attributes.title));
             },
             child: Card(
               elevation: 10,
@@ -77,7 +77,7 @@ class _GenrePageState extends State<GenrePage> {
                       topLeft: Radius.circular(10))),
               child: Center(
                 child: Text(
-                  genereList.attributes.name,
+                  categoryList.attributes.title,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -93,20 +93,3 @@ class _GenrePageState extends State<GenrePage> {
     );
   }
 }
-
-// body: PagedListView<int, GenreList>(
-//   pagingController: _pagingController,
-//   builderDelegate: PagedChildBuilderDelegate<GenreList>(
-//       itemBuilder: (context, genereList, index) {
-//     if (index % 3 == 0)
-//       return Card(
-//         child: Text(genereList.id + "-" + genereList.attributes.name),
-//       );
-//       else return Card(
-//         child: Text(genereList.id),
-//       );
-//     // return Card(
-//     //   child: Text(genereList.attributes.name),
-//     // );
-//   }),
-// ),

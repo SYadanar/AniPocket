@@ -7,6 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../Pages/category_list_page.dart' as _i4;
 import '../Pages/pages.dart' as _i3;
 
 class MyAppRouter extends _i1.RootStackRouter {
@@ -70,6 +71,29 @@ class MyAppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i3.UserSignUpPage();
+        }),
+    GenreDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<GenreDetailRouteArgs>();
+          return _i3.GenreDetailPage(
+              key: args.key,
+              clickedUrl: args.clickedUrl,
+              clickedGenreName: args.clickedGenreName);
+        }),
+    CategoryListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i4.CategoryListPage();
+        }),
+    CategoryDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<CategoryDetailRouteArgs>();
+          return _i3.CategoryDetailPage(
+              key: args.key,
+              clickedUrl: args.clickedUrl,
+              clickedGenreName: args.clickedGenreName);
         })
   };
 
@@ -77,7 +101,7 @@ class MyAppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/home-page'),
         _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
-        _i1.RouteConfig(WelcomeRoute.name, path: '/'),
+        _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
         _i1.RouteConfig(FavouriteRoute.name, path: '/favourite-page'),
         _i1.RouteConfig(GenreRoute.name, path: '/genre-page'),
@@ -85,7 +109,10 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ReleasesRoute.name, path: '/releases-page'),
         _i1.RouteConfig(UserProfileRoute.name, path: '/user-profile-page'),
         _i1.RouteConfig(UserSignInRoute.name, path: '/user-sign-in-page'),
-        _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page')
+        _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
+        _i1.RouteConfig(GenreDetailRoute.name, path: '/genre-detail-page'),
+        _i1.RouteConfig(CategoryListRoute.name, path: '/'),
+        _i1.RouteConfig(CategoryDetailRoute.name, path: '/category-detail-page')
       ];
 }
 
@@ -111,7 +138,7 @@ class AnimeDetailRoute extends _i1.PageRouteInfo {
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo {
-  const WelcomeRoute() : super(name, path: '/');
+  const WelcomeRoute() : super(name, path: '/welcome-page');
 
   static const String name = 'WelcomeRoute';
 }
@@ -162,4 +189,62 @@ class UserSignUpRoute extends _i1.PageRouteInfo {
   const UserSignUpRoute() : super(name, path: '/user-sign-up-page');
 
   static const String name = 'UserSignUpRoute';
+}
+
+class GenreDetailRoute extends _i1.PageRouteInfo<GenreDetailRouteArgs> {
+  GenreDetailRoute(
+      {_i2.Key? key,
+      required String clickedUrl,
+      required String clickedGenreName})
+      : super(name,
+            path: '/genre-detail-page',
+            args: GenreDetailRouteArgs(
+                key: key,
+                clickedUrl: clickedUrl,
+                clickedGenreName: clickedGenreName));
+
+  static const String name = 'GenreDetailRoute';
+}
+
+class GenreDetailRouteArgs {
+  const GenreDetailRouteArgs(
+      {this.key, required this.clickedUrl, required this.clickedGenreName});
+
+  final _i2.Key? key;
+
+  final String clickedUrl;
+
+  final String clickedGenreName;
+}
+
+class CategoryListRoute extends _i1.PageRouteInfo {
+  const CategoryListRoute() : super(name, path: '/');
+
+  static const String name = 'CategoryListRoute';
+}
+
+class CategoryDetailRoute extends _i1.PageRouteInfo<CategoryDetailRouteArgs> {
+  CategoryDetailRoute(
+      {_i2.Key? key,
+      required String clickedUrl,
+      required String clickedGenreName})
+      : super(name,
+            path: '/category-detail-page',
+            args: CategoryDetailRouteArgs(
+                key: key,
+                clickedUrl: clickedUrl,
+                clickedGenreName: clickedGenreName));
+
+  static const String name = 'CategoryDetailRoute';
+}
+
+class CategoryDetailRouteArgs {
+  const CategoryDetailRouteArgs(
+      {this.key, required this.clickedUrl, required this.clickedGenreName});
+
+  final _i2.Key? key;
+
+  final String clickedUrl;
+
+  final String clickedGenreName;
 }
