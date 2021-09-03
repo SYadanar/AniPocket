@@ -86,11 +86,11 @@ class MyAppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.CategoryListPage();
         }),
-    CategoryDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    CategoryRelatedAnimeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
-          final args = data.argsAs<CategoryDetailRouteArgs>();
-          return _i3.CategoryDetailPage(
+          final args = data.argsAs<CategoryRelatedAnimeRouteArgs>();
+          return _i3.CategoryRelatedAnimePage(
               key: args.key,
               clickedUrl: args.clickedUrl,
               clickedGenreName: args.clickedGenreName);
@@ -112,7 +112,8 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
         _i1.RouteConfig(GenreDetailRoute.name, path: '/genre-detail-page'),
         _i1.RouteConfig(CategoryListRoute.name, path: '/'),
-        _i1.RouteConfig(CategoryDetailRoute.name, path: '/category-detail-page')
+        _i1.RouteConfig(CategoryRelatedAnimeRoute.name,
+            path: '/category-related-anime-page')
       ];
 }
 
@@ -223,23 +224,24 @@ class CategoryListRoute extends _i1.PageRouteInfo {
   static const String name = 'CategoryListRoute';
 }
 
-class CategoryDetailRoute extends _i1.PageRouteInfo<CategoryDetailRouteArgs> {
-  CategoryDetailRoute(
+class CategoryRelatedAnimeRoute
+    extends _i1.PageRouteInfo<CategoryRelatedAnimeRouteArgs> {
+  CategoryRelatedAnimeRoute(
       {_i2.Key? key,
       required String clickedUrl,
       required String clickedGenreName})
       : super(name,
-            path: '/category-detail-page',
-            args: CategoryDetailRouteArgs(
+            path: '/category-related-anime-page',
+            args: CategoryRelatedAnimeRouteArgs(
                 key: key,
                 clickedUrl: clickedUrl,
                 clickedGenreName: clickedGenreName));
 
-  static const String name = 'CategoryDetailRoute';
+  static const String name = 'CategoryRelatedAnimeRoute';
 }
 
-class CategoryDetailRouteArgs {
-  const CategoryDetailRouteArgs(
+class CategoryRelatedAnimeRouteArgs {
+  const CategoryRelatedAnimeRouteArgs(
       {this.key, required this.clickedUrl, required this.clickedGenreName});
 
   final _i2.Key? key;

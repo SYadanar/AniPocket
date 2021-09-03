@@ -10,4 +10,4 @@ export 'user_profile_page.dart';
 export 'user_register_page.dart';
 export 'user_sign_page.dart';
 export 'genres_detail.dart';
-export 'category_detail_page.dart';
+export 'category_related_anime_page.dart';

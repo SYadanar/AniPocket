@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
 import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
@@ -65,15 +66,16 @@ class ApiService {
 
   // ------ For getting related Anime List with Category ------
   // https://kitsu.io/api/edge/categories/<<CATEGORY_ID>>/anime?page[limit]=10&page[offset]=0
-  Future<AnimeResponse> getRelatedAnimeList(String baseUrl, int page) async {
+  Future<RelatedAnimeResponse> getRelatedAnimeList(
+      String baseUrl, int page) async {
     try {
       final Response response = await Dio().get(baseUrl, queryParameters: {
         'page[limit]': 10,
         'page[offset]': page,
       });
-      print("Related Anime List Response is ..... $response");
-      print("Related Anime List Data is ..... ${response.realUri}");
-      return AnimeResponse.fromJson(jsonDecode(response.data));
+      // print("Related Anime List Response is ..... $response");
+      // print("Related Anime List Data is ..... ${response.realUri}");
+      return RelatedAnimeResponse.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
       print("The response is ... ${e.toString()}");
       throw Exception("The ERROR Code is ... ${e.response?.statusCode}");

@@ -18,7 +18,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
 
   @override
   void initState() {
-    ApiService().getCategoryList(0).then((value) => print(value.toString()));
+    // ApiService().getCategoryList(0).then((value) => print(value.toString()));
 
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
@@ -54,7 +54,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
       ),
       body: PagedGridView<int, CategoryList>(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: 2,
           childAspectRatio: 3,
           mainAxisSpacing: 5,
           crossAxisSpacing: 10,
@@ -64,8 +64,9 @@ class _CategoryListPageState extends State<CategoryListPage> {
             itemBuilder: (context, categoryList, index) {
           return InkWell(
             onTap: () {
-              // print("You tapped on ${genereList.links.self}");
-              AutoRouter.of(context).push(CategoryDetailRoute(
+              print(
+                  "You tapped on ${categoryList.relationships.anime.links.related}");
+              AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
                   clickedUrl: categoryList.relationships.anime.links.related,
                   clickedGenreName: categoryList.attributes.title));
             },
@@ -85,7 +86,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
                   ),
                 ),
               ),
-              color: Colors.orange,
             ),
           );
         }),
