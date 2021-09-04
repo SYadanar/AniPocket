@@ -1,12 +1,11 @@
 import 'dart:ui';
-
 import 'package:anime_app/Models/For_Anime_Card/anime_attributes.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_relationship.dart';
-import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:anime_app/service/api_service.dart';
+//import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -27,12 +26,10 @@ class _HomePageState extends State<HomePage> {
       body: FutureBuilder<AnimeResponse>(
         future: ApiService().getAnime(),
         builder: (context, snapshot) {
-          
-
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return const CircularProgressIndicator();
-              
+
             default:
               if (snapshot.hasError) {
                 return Center(
@@ -42,6 +39,15 @@ class _HomePageState extends State<HomePage> {
                 return GridView.builder(
                   itemCount: snapshot.data?.animeData.length,
                   itemBuilder: (BuildContext context, int index) {
+                    String rating;
+                    if (snapshot
+                            .data!.animeData[index].attributes.averageRating !=
+                        null) {
+                      rating = snapshot
+                          .data!.animeData[index].attributes.averageRating!;
+                    } else {
+                      rating = "N/A";
+                    }
                     return GestureDetector(
                         onTap: () {},
                         child: Container(
@@ -99,8 +105,7 @@ class _HomePageState extends State<HomePage> {
                                           size: 15,
                                         ),
                                         Text(
-                                          snapshot.data!.animeData[index]
-                                              .attributes.averageRating,
+                                          rating,
                                           style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w400,
