@@ -8,10 +8,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:anime_app/service/api_service.dart';
 
 class HomePage extends StatefulWidget {
-  final int id;
   const HomePage({
     Key? key,
-    required this.id,
   }) : super(key: key);
 
   @override
@@ -22,142 +20,140 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('This is home page'),
-        ),
-        body: ListView(
-          children: [
-            FutureBuilder<AnimeResponse>(
-              //future: ApiService().getAnime("MM", "2020"),
-              builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return const CircularProgressIndicator();
-                  default:
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(snapshot.error.toString()),
-                      );
-                    } else {
-                      return ListView.builder(
-                          itemCount: snapshot.data?.animeData.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              width: double.infinity,
-                              height: 156,
-                              child: Card(
-                                elevation: 10,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: 110,
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black
-                                                  .withOpacity(0.25),
-                                              spreadRadius: 0,
-                                              blurRadius: 10,
-                                              offset: Offset(3, 0),
-                                            ),
-                                          ],
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(15),
-                                            bottomLeft: Radius.circular(15),
-                                          ),
-                                          child: Text(
-                                            Image.original,
-                                            //fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 15),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              child: Text(
-                                                AnimeData.fromJson(),
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  165,
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            SizedBox(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Icon(
-                                                    Icons.stars_rounded,
-                                                    color: Color.fromRGBO(
-                                                        255, 195, 0, 1),
-                                                    size: 16,
-                                                  ),
-                                                  Text(
-                                                    "83.1",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                ],
-                                              ),
-                                              width: 50,
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            SizedBox(
-                                              child: Text(
-                                                "Adventure fiction, Dark fantasy, Martial Arts, Action",
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 0.65),
-                                                ),
-                                              ),
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  165,
-                                            ),
-                                          ],
-                                        ),
+      appBar: AppBar(
+        title: Text('This is home page'),
+      ),
+      body: FutureBuilder<AnimeResponse>(
+        future: ApiService().getAnime(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return const CircularProgressIndicator();
+            default:
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              } else {
+                return GridView.builder(
+                  itemCount: snapshot.data?.animeData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                            child: Column(
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  width: 150,
+                                  height: 194,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.25),
+                                        spreadRadius: 0,
+                                        blurRadius: 10,
+                                        offset: Offset(3, 3),
                                       ),
                                     ],
                                   ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                    child: Image.network(
+                                      snapshot.data!.animeData[index].attributes
+                                          .posterImage.original,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  left: (150 - 58) / 2,
+                                  child: Container(
+                                    transform: Matrix4.translationValues(
+                                        0.0, 10.0, 0.0),
+                                    width: 58,
+                                    height: 22,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(255, 243, 58, 1),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(15),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(
+                                          Icons.stars_rounded,
+                                          // color: Color.fromRGBO(255, 195, 0, 1),
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          snapshot.data!.animeData[index]
+                                              .attributes.averageRating,
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400,
+                                            color:
+                                                Color.fromRGBO(0, 0, 0, 0.65),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                "Action",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(0, 0, 0, 0.65),
                                 ),
                               ),
-                            );
-                          });
-                    }
-                }
-              },
-            ),
-          ],
-        ));
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                snapshot.data!.animeData[index].attributes
+                                    .titles.en_jp,
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        )));
+                  },
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 19 / 30,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 2),
+                  padding: EdgeInsets.only(top: 20, bottom: 10),
+                );
+              }
+          }
+        },
+      ),
+      //],
+    );
   }
 }
+/*snapshot.data!.animeData[index].attributes
+                                          .posterImage.original*/
+                                          /*snapshot.data!.animeData[index]
+                                              .attributes.titles.en_jp*/
+                                              /*snapshot.data!.animeData[index]
+                                                  .attributes.averageRating*/
