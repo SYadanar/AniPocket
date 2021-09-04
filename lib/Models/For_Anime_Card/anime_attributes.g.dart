@@ -10,7 +10,7 @@ Attribute _$AttributeFromJson(Map<String, dynamic> json) {
   return Attribute(
     Title.fromJson(json['titles'] as Map<String, dynamic>),
     json['averageRating'] as String,
-    Image.fromJson(json['posterImage'] as Map<String, dynamic>),
+    Images.fromJson(json['posterImage'] as Map<String, dynamic>),
   );
 }
 
@@ -22,20 +22,20 @@ Map<String, dynamic> _$AttributeToJson(Attribute instance) => <String, dynamic>{
 
 Title _$TitleFromJson(Map<String, dynamic> json) {
   return Title(
-    json['en'] as String,
+    json['en_jp'] as String,
   );
 }
 
 Map<String, dynamic> _$TitleToJson(Title instance) => <String, dynamic>{
-      'en': instance.en,
+      'en_jp': instance.en_jp,
     };
 
-Image _$ImageFromJson(Map<String, dynamic> json) {
-  return Image(
+Images _$ImagesFromJson(Map<String, dynamic> json) {
+  return Images(
     json['original'] as String,
   );
 }
 
-Map<String, dynamic> _$ImageToJson(Image instance) => <String, dynamic>{
+Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
       'original': instance.original,
     };

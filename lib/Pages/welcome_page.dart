@@ -19,7 +19,7 @@ class WelcomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                AutoRouter.of(context).push(HomeRoute(id: 1));
+                //AutoRouter.of(context).push(HomeRoute(id: 1));
                 //AutoRouter.of(context).pop();
               },
               child: Text('guest account'),

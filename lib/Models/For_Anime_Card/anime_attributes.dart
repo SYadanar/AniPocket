@@ -6,7 +6,7 @@ part 'anime_attributes.g.dart';
 class Attribute {
   final Title titles;
   final String averageRating;
-  final Image posterImage;
+  final Images posterImage;
 
   const Attribute(this.titles, this.averageRating, this.posterImage);
 
@@ -18,9 +18,9 @@ class Attribute {
 
 @JsonSerializable()
 class Title {
-  final String en;
+  final String en_jp;
 
-  const Title(this.en);
+  const Title(this.en_jp);
 
   factory Title.fromJson(Map<String, dynamic> json) => _$TitleFromJson(json);
 
@@ -28,12 +28,14 @@ class Title {
 }
 
 @JsonSerializable()
-class Image {
+class Images {
   final String original;
+  
 
-  const Image(this.original);
+  const Images(this.original);
 
-  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+  factory Images.fromJson(Map<String, dynamic> json) => _$ImagesFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ImageToJson(this);
+  Map<String, dynamic> toJson() => _$ImagesToJson(this);
 }
+
