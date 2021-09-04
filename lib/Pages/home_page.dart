@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:anime_app/Models/For_Anime_Card/anime_attributes.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_relationship.dart';
+import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:anime_app/service/api_service.dart';
@@ -26,9 +27,12 @@ class _HomePageState extends State<HomePage> {
       body: FutureBuilder<AnimeResponse>(
         future: ApiService().getAnime(),
         builder: (context, snapshot) {
+          
+
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return const CircularProgressIndicator();
+              
             default:
               if (snapshot.hasError) {
                 return Center(
@@ -128,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                               width: 150,
                               child: Text(
                                 snapshot.data!.animeData[index].attributes
-                                    .titles.en_jp,
+                                    .canonicalTitle,
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.w400),
                               ),
