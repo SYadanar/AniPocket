@@ -94,7 +94,7 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(UserProfileRoute.name, path: '/user-profile-page'),
         _i1.RouteConfig(UserSignInRoute.name, path: '/user-sign-in-page'),
         _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
-        _i1.RouteConfig(CategoryListRoute.name, path: '/'),
+        _i1.RouteConfig(CategoryListRoute.name, path: '/category-list-page'),
         _i1.RouteConfig(CategoryRelatedAnimeRoute.name,
             path: '/category-related-anime-page')
       ];
@@ -161,7 +161,7 @@ class UserSignUpRoute extends _i1.PageRouteInfo {
 }
 
 class CategoryListRoute extends _i1.PageRouteInfo {
-  const CategoryListRoute() : super(name, path: '/');
+  const CategoryListRoute() : super(name, path: '/category-list-page');
 
   static const String name = 'CategoryListRoute';
 }
