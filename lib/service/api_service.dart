@@ -8,13 +8,11 @@ import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:dio/dio.dart';
 
-
 class ApiService {
   //final String api_key = "d442b4d9-2667-479e-bfb0-5e7ef694664e";
   final String route =
       "https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&page%5Boffset%5D=10";
   Future<AnimeResponse> getAnime() async {
-  
     try {
       final Response response =
           await Dio().get('https://kitsu.io/api/edge/trending/anime');
@@ -22,8 +20,8 @@ class ApiService {
       //print("The data is ${response.data}");
 
       return AnimeResponse.fromJson(jsonDecode(response.data));
-    }on DioError catch (e) {
-      print("The res is"+ e.toString());
+    } on DioError catch (e) {
+      print("The res is" + e.toString());
       throw Exception("The error code is ${e.response?.statusCode}");
     }
   }
@@ -105,8 +103,8 @@ class ApiService {
 
   // ------ For [Current Year] Releases ------
   // https://kitsu.io/api/edge/anime?filter[seasonYear]=<<CURRENT_YEAR>>
-  Future<RelatedAnimeResponse> getCurrentYearReleaseAnimeList(
-      int currentYear, int page) async {
+  static final currentYear = DateTime.now().year; // Getting Current Year
+  Future<RelatedAnimeResponse> getCurrentYearReleaseAnimeList(int page) async {
     try {
       final Response response =
           await Dio().get('https://kitsu.io/api/edge/anime', queryParameters: {

@@ -12,7 +12,13 @@ class DrawerList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        DrawerHeader(child: Text("App Name")),
+        // DrawerHeader(child: Text("App Name")),
+        Container(
+          height: 100,
+          child: ListTile(
+            title: Text("App Name"),
+          ),
+        ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
@@ -29,6 +35,9 @@ class DrawerList extends StatelessWidget {
           child: ListTile(
             leading: Icon(Icons.home),
             title: Text("HOME"),
+            onTap: () {
+              AutoRouter.of(context).push(HomeRoute());
+            },
           ),
         ),
         Container(

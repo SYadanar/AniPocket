@@ -56,24 +56,27 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
       appBar: AppBar(
         title: Text(widget.clickedGenreName),
       ),
-      body: PagedListView<int, RelatedAnimeList>(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
-            itemBuilder: (context, relatedAnimeList, index) {
-          String rating;
-          if (relatedAnimeList.attributes.averageRating != null) {
-            rating = relatedAnimeList.attributes.averageRating!;
-          } else {
-            rating = "N/A";
-          }
-          return AnimeCardForGenres(
-            imageUrl: relatedAnimeList.attributes.posterImage.original,
-            // rating: relatedAnimeList.attributes.averageRating,
-            rating: rating,
-            category: relatedAnimeList.relationships.categories.links.related,
-            animeName: relatedAnimeList.attributes.canonicalTitle,
-          );
-        }),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16),
+        child: PagedListView<int, RelatedAnimeList>(
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
+              itemBuilder: (context, relatedAnimeList, index) {
+            String rating;
+            if (relatedAnimeList.attributes.averageRating != null) {
+              rating = relatedAnimeList.attributes.averageRating!;
+            } else {
+              rating = "N/A";
+            }
+            return AnimeCardForGenres(
+              imageUrl: relatedAnimeList.attributes.posterImage.original,
+              // rating: relatedAnimeList.attributes.averageRating,
+              rating: rating,
+              category: relatedAnimeList.relationships.categories.links.related,
+              animeName: relatedAnimeList.attributes.canonicalTitle,
+            );
+          }),
+        ),
       ),
     );
   }
