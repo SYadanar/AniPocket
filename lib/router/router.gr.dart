@@ -18,9 +18,8 @@ class MyAppRouter extends _i1.RootStackRouter {
   final Map<String, _i1.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<HomeRouteArgs>();
-          return _i3.HomePage(key: args.key, id: args.id);
+        builder: (_) {
+          return const _i3.HomePage();
         }),
     AnimeDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -85,7 +84,7 @@ class MyAppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeRoute.name, path: '/home-page'),
+        _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
@@ -101,19 +100,10 @@ class MyAppRouter extends _i1.RootStackRouter {
       ];
 }
 
-class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i2.Key? key, required int id})
-      : super(name, path: '/home-page', args: HomeRouteArgs(key: key, id: id));
+class HomeRoute extends _i1.PageRouteInfo {
+  const HomeRoute() : super(name, path: '/');
 
   static const String name = 'HomeRoute';
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key, required this.id});
-
-  final _i2.Key? key;
-
-  final int id;
 }
 
 class AnimeDetailRoute extends _i1.PageRouteInfo {
