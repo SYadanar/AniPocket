@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 
-class AnimeDetailPage extends StatelessWidget {
-  const AnimeDetailPage({
-    Key? key,
-  }) : super(key: key);
+class AnimeDetail extends StatefulWidget {
+  const AnimeDetail({Key? key}) : super(key: key);
 
   @override
+  _AnimeDetailState createState() => _AnimeDetailState();
+}
+
+class _AnimeDetailState extends State<AnimeDetail> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+        home: Scaffold(
       body: ListView(children: [
         Stack(
           children: [
@@ -670,6 +673,6 @@ class AnimeDetailPage extends StatelessWidget {
           ),
         ),
       ]),
-    );
+    ));
   }
 }
