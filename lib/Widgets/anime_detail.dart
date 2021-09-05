@@ -17,7 +17,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
           children: [
             Container(
                 width: double.infinity,
-                height: 200,
+                height: 230,
                 child: FittedBox(
                   child: Image.asset('assets/images/Example.jpg'),
                   fit: BoxFit.fill,
@@ -50,11 +50,11 @@ class _AnimeDetailState extends State<AnimeDetail> {
               Container(
                 child: Text(
                   "The Name of Anime",
-                  style: TextStyle(fontSize: 19),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
               SizedBox(
-                width: 150,
+                width: 130,
               ),
               Container(
                 child: Icon(
@@ -66,133 +66,62 @@ class _AnimeDetailState extends State<AnimeDetail> {
           ),
         ),
         SizedBox(
-          height: 30,
+          height: 25,
         ),
-        Stack(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 60,
-            ),
-            Positioned(
-              left: 10,
-              child: Icon(
-                Icons.category,
-                size: 28,
+        Container(
+          width: double.infinity,
+          height: 20,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 12,
               ),
-            ),
-            Positioned(
-              left: 50,
-              child: Card(
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Genres',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+              Container(
+                child: Text(
+                  'Rating',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 13),
                 ),
               ),
-            ),
-            Positioned(
-              left: 110,
-              child: Card(
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Genres',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+              SizedBox(
+                width: 5,
+              ),
+              Container(
+                child: Text(
+                  '83/100',
+                  style: TextStyle(fontSize: 13),
                 ),
               ),
-            ),
-            Positioned(
-              left: 170,
-              child: Card(
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Genres',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          width: double.infinity,
+          height: 40,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Container(
+                    height: 35,
+                    width: 130,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Genres',
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 240,
-              child: Card(
-                child: Container(
-                  height: 30,
-                  width: 110,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Ratings  83',
-                        style: TextStyle(color: Colors.grey[700], fontSize: 13),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 28,
-              left: 50,
-              child: Card(
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Genres',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 28,
-              left: 110,
-              child: Card(
-                child: Container(
-                  height: 20,
-                  width: 50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Genres',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
+                );
+              }),
         ),
         SizedBox(
           height: 18,
@@ -229,7 +158,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                   child: ListView(
                     children: [
                       Text(
-                          'Write Review here........................................................................................')
+                          'Write Review here..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................')
                     ],
                   ),
                 )
@@ -646,29 +575,6 @@ class _AnimeDetailState extends State<AnimeDetail> {
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-        Container(
-          color: Colors.white,
-          width: double.infinity,
-          height: 35,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                  child: Container(
-                      height: 35,
-                      width: 80,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "See more",
-                              style: TextStyle(fontSize: 14),
-                              textAlign: TextAlign.center,
-                            ),
-                          ]))),
             ],
           ),
         ),

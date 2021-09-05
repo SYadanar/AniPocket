@@ -84,8 +84,8 @@ class MyAppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeRoute.name, path: '/'),
-        _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
+        _i1.RouteConfig(HomeRoute.name, path: '/home-page'),
+        _i1.RouteConfig(AnimeDetailRoute.name, path: '/'),
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
         _i1.RouteConfig(FavouriteRoute.name, path: '/favourite-page'),
@@ -94,20 +94,20 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(UserProfileRoute.name, path: '/user-profile-page'),
         _i1.RouteConfig(UserSignInRoute.name, path: '/user-sign-in-page'),
         _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
-        _i1.RouteConfig(CategoryListRoute.name, path: '/'),
+        _i1.RouteConfig(CategoryListRoute.name, path: '/category-list-page'),
         _i1.RouteConfig(CategoryRelatedAnimeRoute.name,
             path: '/category-related-anime-page')
       ];
 }
 
 class HomeRoute extends _i1.PageRouteInfo {
-  const HomeRoute() : super(name, path: '/');
+  const HomeRoute() : super(name, path: '/home-page');
 
   static const String name = 'HomeRoute';
 }
 
 class AnimeDetailRoute extends _i1.PageRouteInfo {
-  const AnimeDetailRoute() : super(name, path: '/anime-detail-page');
+  const AnimeDetailRoute() : super(name, path: '/');
 
   static const String name = 'AnimeDetailRoute';
 }
@@ -161,7 +161,7 @@ class UserSignUpRoute extends _i1.PageRouteInfo {
 }
 
 class CategoryListRoute extends _i1.PageRouteInfo {
-  const CategoryListRoute() : super(name, path: '/');
+  const CategoryListRoute() : super(name, path: '/category-list-page');
 
   static const String name = 'CategoryListRoute';
 }
