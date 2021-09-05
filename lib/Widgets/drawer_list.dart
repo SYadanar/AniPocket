@@ -68,6 +68,9 @@ class DrawerList extends StatelessWidget {
           child: ListTile(
             leading: Icon(Icons.calendar_today),
             title: Text("$currentYear RELEASES"),
+            onTap: () {
+              AutoRouter.of(context).push(ReleasesRoute());
+            },
           ),
         ),
         Container(

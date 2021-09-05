@@ -4,9 +4,9 @@ part 'anime_relationship.g.dart';
 
 @JsonSerializable()
 class Relationship {
-  final Genre genres;
+  final Category categories;
 
-  const Relationship(this.genres);
+  const Relationship(this.categories);
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);
@@ -15,14 +15,15 @@ class Relationship {
 }
 
 @JsonSerializable()
-class Genre {
+class Category {
   final Link links;
 
-  const Genre(this.links);
+  const Category(this.links);
 
-  factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GenreToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryToJson(this);
 }
 
 @JsonSerializable()

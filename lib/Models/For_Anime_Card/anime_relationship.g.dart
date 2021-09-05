@@ -8,22 +8,22 @@ part of 'anime_relationship.dart';
 
 Relationship _$RelationshipFromJson(Map<String, dynamic> json) {
   return Relationship(
-    Genre.fromJson(json['genres'] as Map<String, dynamic>),
+    Category.fromJson(json['categories'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$RelationshipToJson(Relationship instance) =>
     <String, dynamic>{
-      'genres': instance.genres,
+      'categories': instance.categories,
     };
 
-Genre _$GenreFromJson(Map<String, dynamic> json) {
-  return Genre(
+Category _$CategoryFromJson(Map<String, dynamic> json) {
+  return Category(
     Link.fromJson(json['links'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$GenreToJson(Genre instance) => <String, dynamic>{
+Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'links': instance.links,
     };
 
