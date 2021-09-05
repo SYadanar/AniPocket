@@ -5,6 +5,7 @@ import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
 import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:dio/dio.dart';
 
 
@@ -67,6 +68,23 @@ class ApiService {
     }
   }
 
+  // Get Category List in String
+  Future<CategoryListResponse> getAnimeCategoryListInString(
+      String baseUrl, int page) async {
+    try {
+      final Response response = await Dio().get(baseUrl, queryParameters: {
+        'page[limit]': 10,
+        'page[offset]': page,
+      });
+      // print("Category List Response is ..... $response");
+      // print("Category List Data is ..... ${response.realUri}");
+      return CategoryListResponse.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The response is ... ${e.toString()}");
+      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
+    }
+  }
+
   // ------ For getting related Anime List with Category ------
   // https://kitsu.io/api/edge/categories/<<CATEGORY_ID>>/anime?page[limit]=10&page[offset]=0
   Future<RelatedAnimeResponse> getRelatedAnimeList(
@@ -78,6 +96,26 @@ class ApiService {
       });
       // print("Related Anime List Response is ..... $response");
       // print("Related Anime List Data is ..... ${response.realUri}");
+      return RelatedAnimeResponse.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The response is ... ${e.toString()}");
+      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
+    }
+  }
+
+  // ------ For [Current Year] Releases ------
+  // https://kitsu.io/api/edge/anime?filter[seasonYear]=<<CURRENT_YEAR>>
+  Future<RelatedAnimeResponse> getCurrentYearReleaseAnimeList(
+      int currentYear, int page) async {
+    try {
+      final Response response =
+          await Dio().get('https://kitsu.io/api/edge/anime', queryParameters: {
+        'filter[seasonYear]': currentYear,
+        'page[limit]': 10,
+        'page[offset]': page,
+      });
+      // print("Anime List Response is ..... $response");
+      // print("URL is ..... ${response.realUri}");
       return RelatedAnimeResponse.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
       print("The response is ... ${e.toString()}");

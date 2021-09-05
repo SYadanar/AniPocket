@@ -70,7 +70,7 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
             imageUrl: relatedAnimeList.attributes.posterImage.original,
             // rating: relatedAnimeList.attributes.averageRating,
             rating: rating,
-            category: relatedAnimeList.relationships.genres.links.related,
+            category: relatedAnimeList.relationships.categories.links.related,
             animeName: relatedAnimeList.attributes.canonicalTitle,
           );
         }),
