@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:dio/dio.dart';
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
@@ -7,14 +8,34 @@ import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:dio/dio.dart';
-
+import 'package:flutter/cupertino.dart';
 
 class ApiService {
   //final String api_key = "d442b4d9-2667-479e-bfb0-5e7ef694664e";
   final String route =
       "https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&page%5Boffset%5D=10";
+
+  //for homepage
+  Future<AllAnime> getAll(int page) async {
+    try {
+      final Response response = await Dio().get(
+          'https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=0&sort=-averageRating',
+          queryParameters: {
+            'page[offset]': page,
+            'page[limit]': 10,
+          });
+      //print("The response is $response");
+      //print("The data is ${response.data}");
+
+      return AllAnime.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The res is" + e.toString());
+      throw Exception("The error code is ${e.response?.statusCode}");
+    }
+  }
+
+  //for homepage
   Future<AnimeResponse> getAnime() async {
-  
     try {
       final Response response =
           await Dio().get('https://kitsu.io/api/edge/trending/anime');
@@ -22,8 +43,8 @@ class ApiService {
       //print("The data is ${response.data}");
 
       return AnimeResponse.fromJson(jsonDecode(response.data));
-    }on DioError catch (e) {
-      print("The res is"+ e.toString());
+    } on DioError catch (e) {
+      print("The res is" + e.toString());
       throw Exception("The error code is ${e.response?.statusCode}");
     }
   }

@@ -378,7 +378,7 @@ class AnimeDetailPage extends StatelessWidget {
                           ),
                           Container(
                             child: Text(
-                              "Episode Length",
+                              "Episode Length-",
                               style: TextStyle(
                                   fontSize: 12, color: Colors.grey[700]),
                             ),
