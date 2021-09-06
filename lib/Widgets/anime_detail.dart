@@ -1,3 +1,4 @@
+import 'package:anime_app/Widgets/category_list_of_anime.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetail extends StatefulWidget {
@@ -138,33 +139,11 @@ class _AnimeDetailState extends State<AnimeDetail> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 40,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Container(
-                          height: 35,
-                          width: 130,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Genres',
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                // Category List Start
+                CategoryListOfAnime(
+                  url: widget.categoryUrl,
                 ),
+                // Category List End
                 SizedBox(
                   height: 10,
                 ),

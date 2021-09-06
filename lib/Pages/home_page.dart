@@ -1,5 +1,8 @@
 import 'dart:ui';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
+import 'package:anime_app/Widgets/drawer_list.dart';
+import 'package:anime_app/router/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_app/service/api_service.dart';
 //import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
@@ -18,7 +21,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('This is home page'),
+        title: Text('Home'),
+      ),
+      drawer: Drawer(
+        child: DrawerList(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -49,7 +55,13 @@ class _HomePageState extends State<HomePage> {
                           rating = "N/A";
                         }
                         return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              AutoRouter.of(context).push(
+                                AnimeDetailRoute(
+                                    clickedUrl:
+                                        "https://kitsu.io/api/edge${snapshot.data!.animeData[index].links.self}"),
+                              );
+                            },
                             child: Container(
                                 child: Column(
                               children: [
@@ -61,7 +73,8 @@ class _HomePageState extends State<HomePage> {
                                       decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(0.25),
+                                            color:
+                                                Colors.black.withOpacity(0.25),
                                             spreadRadius: 0,
                                             blurRadius: 10,
                                             offset: Offset(3, 3),
@@ -90,7 +103,8 @@ class _HomePageState extends State<HomePage> {
                                         padding:
                                             EdgeInsets.symmetric(horizontal: 5),
                                         decoration: BoxDecoration(
-                                          color: Color.fromRGBO(255, 243, 58, 1),
+                                          color:
+                                              Color.fromRGBO(255, 243, 58, 1),
                                           borderRadius: BorderRadius.all(
                                             Radius.circular(15),
                                           ),
@@ -109,8 +123,8 @@ class _HomePageState extends State<HomePage> {
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
-                                                color:
-                                                    Color.fromRGBO(0, 0, 0, 0.65),
+                                                color: Color.fromRGBO(
+                                                    0, 0, 0, 0.65),
                                               ),
                                             ),
                                           ],
@@ -150,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                             )));
                       },
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 9 / 10,
+                          childAspectRatio: 1 / 1.2,
                           mainAxisSpacing: 5,
                           crossAxisSpacing: 10,
                           crossAxisCount: 2),

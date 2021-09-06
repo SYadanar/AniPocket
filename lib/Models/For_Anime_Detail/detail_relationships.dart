@@ -3,46 +3,49 @@ import 'package:json_annotation/json_annotation.dart';
 part 'detail_relationships.g.dart';
 
 @JsonSerializable()
-class Relationships{
-   final Genres genres;
-   final Characters characters;
-   
-   const Relationships(this.genres, this.characters);
+class Relationships {
+  final Category categories;
+  final AnimeCharacter animeCharacters;
 
-   factory Relationships.fromJson(Map<String, dynamic> json) => _$RelationshipsFromJson(json);
+  const Relationships(this.categories, this.animeCharacters);
 
-   Map<String, dynamic> toJson() => _$RelationshipsToJson(this);
+  factory Relationships.fromJson(Map<String, dynamic> json) =>
+      _$RelationshipsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RelationshipsToJson(this);
 }
 
 @JsonSerializable()
-class Genres{
-   final Links links;
+class Category {
+  final Links links;
 
-   const Genres(this.links);
+  const Category(this.links);
 
-   factory Genres.fromJson(Map<String, dynamic> json) => _$GenresFromJson(json);
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
 
-   Map<String, dynamic> toJson() => _$GenresToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryToJson(this);
 }
 
 @JsonSerializable()
-class Characters{
-   final Links links;
+class AnimeCharacter {
+  final Links links;
 
-   const Characters(this.links);
+  const AnimeCharacter(this.links);
 
-   factory Characters.fromJson(Map<String, dynamic> json) => _$CharactersFromJson(json);
+  factory AnimeCharacter.fromJson(Map<String, dynamic> json) =>
+      _$AnimeCharacterFromJson(json);
 
-   Map<String, dynamic> toJson() => _$CharactersToJson(this);
+  Map<String, dynamic> toJson() => _$AnimeCharacterToJson(this);
 }
 
 @JsonSerializable()
-class Links{
-   final String related;
+class Links {
+  final String related;
 
-   const Links(this.related);
+  const Links(this.related);
 
-   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
+  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
-   Map<String, dynamic> toJson() => _$LinksToJson(this);
+  Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
