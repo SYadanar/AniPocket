@@ -126,8 +126,8 @@ class ApiService {
 
   // ------ For [Current Year] Releases ------
   // https://kitsu.io/api/edge/anime?filter[seasonYear]=<<CURRENT_YEAR>>
-  Future<RelatedAnimeResponse> getCurrentYearReleaseAnimeList(
-      int currentYear, int page) async {
+  static final currentYear = DateTime.now().year; // Getting Current Year
+  Future<RelatedAnimeResponse> getCurrentYearReleaseAnimeList(int page) async {
     try {
       final Response response =
           await Dio().get('https://kitsu.io/api/edge/anime', queryParameters: {

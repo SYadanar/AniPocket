@@ -43,14 +43,10 @@ class AnimeCardForGeneral extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(15),
                     ),
-                    child: Image.asset(
-                      'assets/images/sample_poster.jpg',
+                    child: Image.network(
+                      imageUrl,
                       fit: BoxFit.fill,
                     ),
-                    // child: Image.network(
-                    //   imageUrl,
-                    //   fit: BoxFit.fill,
-                    // ),
                   ),
                 ),
                 Positioned(
@@ -106,10 +102,12 @@ class AnimeCardForGeneral extends StatelessWidget {
             ),
             SizedBox(
               width: 150,
-              height: 200,
               child: Text(
                 animeName,
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                overflow: TextOverflow.fade,
+                maxLines: 2,
+                softWrap: true,
               ),
             )
           ],
