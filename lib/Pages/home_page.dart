@@ -323,7 +323,7 @@ class _HomePageState extends State<HomePage> {
                                             AutoRouter.of(context).push(
                                               AnimeDetailRoute(
                                                   clickedUrl:
-                                                      "https://kitsu.io/api/edge${allanime.links.self}"),
+                                                      allanime.links.self),
                                             );
                                           },
                                           child: Container(
