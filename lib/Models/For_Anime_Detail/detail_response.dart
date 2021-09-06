@@ -5,31 +5,32 @@ import 'package:json_annotation/json_annotation.dart';
 part 'detail_response.g.dart';
 
 @JsonSerializable()
-class AnimeResponse {
-  final List<Anime> data;
+class AnimeDetailResponse {
+  final AnimeData data;
 
-  const AnimeResponse(this.data);
+  const AnimeDetailResponse(this.data);
 
-  factory AnimeResponse.fromJson(Map<String, dynamic> json) =>
-      _$AnimeResponseFromJson(json);
+  factory AnimeDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$AnimeDetailResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AnimeResponseToJson(this);
+  Map<String, dynamic> toJson() => _$AnimeDetailResponseToJson(this);
 }
 
 @JsonSerializable()
-class Anime {
+class AnimeData {
   final String id;
   final String type;
   final SelfLinks links;
   final Attributes attributes;
   final Relationships relationships;
 
-  const Anime(
+  const AnimeData(
       this.id, this.type, this.links, this.attributes, this.relationships);
 
-  factory Anime.fromJson(Map<String, dynamic> json) => _$AnimeFromJson(json);
+  factory AnimeData.fromJson(Map<String, dynamic> json) =>
+      _$AnimeDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AnimeToJson(this);
+  Map<String, dynamic> toJson() => _$AnimeDataToJson(this);
 }
 
 @JsonSerializable()

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
+import 'package:anime_app/Models/For_Anime_Detail/detail_response.dart';
 import 'package:dio/dio.dart';
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
@@ -143,4 +144,16 @@ class ApiService {
       throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
     }
   }
+  // ------ For Anime Detail ------
+  // https://kitsu.io/api/edge/anime/<<ANIME_ID>>
+  Future<AnimeDetailResponse> getAnimeDetail(String baseUrl) async {
+    try {
+      final Response response = await Dio().get(baseUrl);
+      return AnimeDetailResponse.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The response is ... ${e.toString()}");
+      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
+    }
+  }
 }
+

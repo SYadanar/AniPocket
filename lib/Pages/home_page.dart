@@ -1,6 +1,10 @@
 import 'dart:ui';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
+import 'package:anime_app/Widgets/drawer_list.dart';
+import 'package:anime_app/router/router.gr.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -50,7 +54,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('This is home page'),
+          title: Text('Home'),
+        ),
+        drawer: Drawer(
+          child: DrawerList(),
         ),
         body:
             /*(
@@ -127,7 +134,13 @@ class _HomePageState extends State<HomePage> {
                                           rating = "N/A";
                                         }
                                         return GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              AutoRouter.of(context).push(
+                                                AnimeDetailRoute(
+                                                    clickedUrl:
+                                                        "https://kitsu.io/api/edge${snapshot.data!.animeData[index].links.self}"),
+                                              );
+                                            },
                                             child: Container(
                                                 child: Column(
                                               children: [
@@ -306,7 +319,13 @@ class _HomePageState extends State<HomePage> {
                                           rating = "N/A";
                                         }
                                         return InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            AutoRouter.of(context).push(
+                                              AnimeDetailRoute(
+                                                  clickedUrl:
+                                                      "https://kitsu.io/api/edge${allanime.links.self}"),
+                                            );
+                                          },
                                           child: Container(
                                               child: Column(
                                             children: [

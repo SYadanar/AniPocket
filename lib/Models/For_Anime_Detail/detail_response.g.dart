@@ -6,21 +6,20 @@ part of 'detail_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AnimeResponse _$AnimeResponseFromJson(Map<String, dynamic> json) {
-  return AnimeResponse(
-    (json['data'] as List<dynamic>)
-        .map((e) => Anime.fromJson(e as Map<String, dynamic>))
-        .toList(),
+AnimeDetailResponse _$AnimeDetailResponseFromJson(Map<String, dynamic> json) {
+  return AnimeDetailResponse(
+    AnimeData.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$AnimeResponseToJson(AnimeResponse instance) =>
+Map<String, dynamic> _$AnimeDetailResponseToJson(
+        AnimeDetailResponse instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
 
-Anime _$AnimeFromJson(Map<String, dynamic> json) {
-  return Anime(
+AnimeData _$AnimeDataFromJson(Map<String, dynamic> json) {
+  return AnimeData(
     json['id'] as String,
     json['type'] as String,
     SelfLinks.fromJson(json['links'] as Map<String, dynamic>),
@@ -29,7 +28,7 @@ Anime _$AnimeFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$AnimeToJson(Anime instance) => <String, dynamic>{
+Map<String, dynamic> _$AnimeDataToJson(AnimeData instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
       'links': instance.links,
