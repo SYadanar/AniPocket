@@ -5,7 +5,7 @@ part 'detail_attributes.g.dart';
 @JsonSerializable()
 class Attributes {
   final String description;
-  final String canonicalTitle;
+  final String? canonicalTitle;
   final String? averageRating;
   final String? startDate;
   final String? endDate;
@@ -13,12 +13,12 @@ class Attributes {
   final int? popularityRank;
   final int? ratingRank;
   final String? ageRatingGuide;
-  final String status;
-  final Image posterImage;
+  final String? status;
+  final Image? posterImage;
   final Image? coverImage;
   final int? episodeCount;
   final int? episodeLength;
-  final String youtubeVideoId;
+  final String? youtubeVideoId;
 
   const Attributes(
       this.description,

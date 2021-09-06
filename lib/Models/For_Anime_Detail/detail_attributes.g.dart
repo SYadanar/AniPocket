@@ -9,7 +9,7 @@ part of 'detail_attributes.dart';
 Attributes _$AttributesFromJson(Map<String, dynamic> json) {
   return Attributes(
     json['description'] as String,
-    json['canonicalTitle'] as String,
+    json['canonicalTitle'] as String?,
     json['averageRating'] as String?,
     json['startDate'] as String?,
     json['endDate'] as String?,
@@ -17,14 +17,16 @@ Attributes _$AttributesFromJson(Map<String, dynamic> json) {
     json['popularityRank'] as int?,
     json['ratingRank'] as int?,
     json['ageRatingGuide'] as String?,
-    json['status'] as String,
-    Image.fromJson(json['posterImage'] as Map<String, dynamic>),
+    json['status'] as String?,
+    json['posterImage'] == null
+        ? null
+        : Image.fromJson(json['posterImage'] as Map<String, dynamic>),
     json['coverImage'] == null
         ? null
         : Image.fromJson(json['coverImage'] as Map<String, dynamic>),
     json['episodeCount'] as int?,
     json['episodeLength'] as int?,
-    json['youtubeVideoId'] as String,
+    json['youtubeVideoId'] as String?,
   );
 }
 

@@ -61,6 +61,7 @@ class _ReleasesPageState extends State<ReleasesPage> {
             mainAxisSpacing: 5,
             crossAxisSpacing: 10,
           ),
+          padding: EdgeInsets.only(top: 25),
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
               itemBuilder: (context, currentYearReleasesAnimeList, index) {
