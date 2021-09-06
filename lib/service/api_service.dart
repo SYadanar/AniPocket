@@ -20,10 +20,11 @@ class ApiService {
   Future<AllAnime> getAll(int page) async {
     try {
       final Response response = await Dio().get(
-          'https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=0&sort=-averageRating',
+          'https://kitsu.io/api/edge/anime',
           queryParameters: {
             'page[offset]': page,
             'page[limit]': 10,
+            'sort': "-averageRating",
           });
       //print("The response is $response");
       //print("The data is ${response.data}");

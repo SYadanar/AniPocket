@@ -29,6 +29,8 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
             String ageRatingGuide = "N/A";
             String episodeCount = "N/A";
             String episodeLength = "N/A";
+            String title = 'N/A';
+            String statue = 'N/A';
 
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -51,8 +53,9 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   if (snapshot.data!.data.attributes.nextRelease != null)
                     nextRelease = snapshot.data!.data.attributes.nextRelease!;
                   if (snapshot.data!.data.attributes.popularityRank != null)
-                    popularityRank =
-                        snapshot.data!.data.attributes.popularityRank.toString();
+                    popularityRank = snapshot
+                        .data!.data.attributes.popularityRank
+                        .toString();
                   if (snapshot.data!.data.attributes.ratingRank != null)
                     ratingRank =
                         snapshot.data!.data.attributes.ratingRank.toString();
@@ -66,11 +69,17 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                     episodeLength =
                         snapshot.data!.data.attributes.episodeLength.toString();
 
+                  if (snapshot.data!.data.attributes.canonicalTitle != null)
+                    title = snapshot.data!.data.attributes.canonicalTitle
+                        .toString();
+
+                  if (snapshot.data!.data.attributes.status != null)
+                    statue = snapshot.data!.data.attributes.status.toString();
                   return AnimeDetail(
                     coverImageUrl: coverImg,
                     rating: rating,
                     overview: snapshot.data!.data.attributes.description,
-                    animeTitle: snapshot.data!.data.attributes.canonicalTitle,
+                    animeTitle: title,
                     categoryUrl: snapshot
                         .data!.data.relationships.categories.links.related,
                     startDate: startDate,
@@ -79,7 +88,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                     popularityRank: popularityRank,
                     ratingRank: ratingRank,
                     ageRatingGuide: ageRatingGuide,
-                    status: snapshot.data!.data.attributes.status,
+                    status: statue,
                     episodeCount: episodeCount,
                     episodeLength: episodeLength,
                     characterUrl: snapshot

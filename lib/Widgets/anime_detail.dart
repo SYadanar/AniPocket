@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetail extends StatefulWidget {
@@ -75,13 +76,17 @@ class _AnimeDetailState extends State<AnimeDetail> {
                 ),
               ),
               Positioned(
-                top: 16,
-                left: 15,
-                child: Icon(
-                  Icons.arrow_back_ios_new_outlined,
-                  size: 18,
-                ),
-              )
+                  top: 16,
+                  left: 15,
+                  child: InkWell(
+                    onTap: () {
+                      AutoRouter.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      size: 18,
+                    ),
+                  ))
             ],
           ),
           Padding(
