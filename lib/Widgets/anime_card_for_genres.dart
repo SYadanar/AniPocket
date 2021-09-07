@@ -21,34 +21,34 @@ class AnimeCardForGenres extends StatefulWidget {
 }
 
 class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
-  final PagingController<int, CategoryList> _pagingController =
-      PagingController(firstPageKey: 0);
+  // final PagingController<int, CategoryList> _pagingController =
+  //     PagingController(firstPageKey: 0);
 
-  @override
-  void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
+  // @override
+  // void initState() {
+  //   _pagingController.addPageRequestListener((pageKey) {
+  //     _fetchPage(pageKey);
+  //   });
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
-  Future<void> _fetchPage(int pageKey) async {
-    try {
-      final response = await ApiService()
-          .getAnimeCategoryListInString(widget.category, pageKey);
+  // Future<void> _fetchPage(int pageKey) async {
+  //   try {
+  //     final response = await ApiService()
+  //         .getAnimeCategoryListInString(widget.category, pageKey);
 
-      final bool isLastPage = response.meta.count <= pageKey;
-      if (isLastPage) {
-        _pagingController.appendLastPage(response.data);
-      } else {
-        final int nextPageKey = pageKey + 10;
-        _pagingController.appendPage(response.data, nextPageKey);
-      }
-    } catch (error) {
-      _pagingController.error = error;
-    }
-  }
+  //     final bool isLastPage = response.meta.count <= pageKey;
+  //     if (isLastPage) {
+  //       _pagingController.appendLastPage(response.data);
+  //     } else {
+  //       final int nextPageKey = pageKey + 10;
+  //       _pagingController.appendPage(response.data, nextPageKey);
+  //     }
+  //   } catch (error) {
+  //     _pagingController.error = error;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

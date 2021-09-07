@@ -19,13 +19,12 @@ class ApiService {
   //for homepage
   Future<AllAnime> getAll(int page) async {
     try {
-      final Response response = await Dio().get(
-          'https://kitsu.io/api/edge/anime',
-          queryParameters: {
-            'page[offset]': page,
-            'page[limit]': 10,
-            'sort': "-averageRating",
-          });
+      final Response response =
+          await Dio().get('https://kitsu.io/api/edge/anime', queryParameters: {
+        'page[offset]': page,
+        'page[limit]': 10,
+        'sort': "-averageRating",
+      });
       //print("The response is $response");
       //print("The data is ${response.data}");
 
@@ -51,26 +50,6 @@ class ApiService {
     }
   }
 
-  // ------ For Genres List ------
-  // https://kitsu.io/api/edge/genres?fields%5Bgenres%5D=name&page%5Blimit%5D=10&page%5Boffset%5D=0
-  Future<GenreListResponse> getGenreList(int page) async {
-    try {
-      final Response response =
-          await Dio().get('https://kitsu.io/api/edge/genres', queryParameters: {
-        'fields[genres]': "name",
-        'page[limit]': 10,
-        'page[offset]': page,
-      });
-      // print("Genre List Response is ..... $response");
-      // print("Genre List Data is ..... ${response.realUri}");
-      // return GenreListResponse.fromJson(response.data);
-      return GenreListResponse.fromJson(jsonDecode(response.data));
-    } on DioError catch (e) {
-      print("The response is ... ${e.toString()}");
-      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
-    }
-  }
-
   // ------ For Category List ------
   // https://kitsu.io/api/edge/categories?page%5Blimit%5D=10&page%5Boffset%5D=0
   // https://kitsu.io/api/edge/categories?page%5Blimit%5D=10&page%5Boffset%5D=0&sort=title
@@ -91,16 +70,15 @@ class ApiService {
     }
   }
 
-  // Get Category List in String
-  Future<CategoryListResponse> getAnimeCategoryListInString(
+  // ------ For Category List of Selected Anime ------
+  // https://kitsu.io/api/edge/anime/<<ANIME_ID>>/categories?page[limit]=10&page[offset]=0=0
+  Future<CategoryListResponse> getRelatedCategoryList(
       String baseUrl, int page) async {
     try {
       final Response response = await Dio().get(baseUrl, queryParameters: {
         'page[limit]': 10,
         'page[offset]': page,
       });
-      // print("Category List Response is ..... $response");
-      // print("Category List Data is ..... ${response.realUri}");
       return CategoryListResponse.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
       print("The response is ... ${e.toString()}");
@@ -145,6 +123,7 @@ class ApiService {
       throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
     }
   }
+
   // ------ For Anime Detail ------
   // https://kitsu.io/api/edge/anime/<<ANIME_ID>>
   Future<AnimeDetailResponse> getAnimeDetail(String baseUrl) async {
@@ -157,4 +136,3 @@ class ApiService {
     }
   }
 }
-

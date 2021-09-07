@@ -29,8 +29,9 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
             String ageRatingGuide = "N/A";
             String episodeCount = "N/A";
             String episodeLength = "N/A";
-            String title = 'N/A';
-            String statue = 'N/A';
+            String title = "N/A";
+            String statue = "N/A";
+            String youtubeVideoId = "N/A";
 
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -68,10 +69,12 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                   if (snapshot.data!.data.attributes.episodeLength != null)
                     episodeLength =
                         snapshot.data!.data.attributes.episodeLength.toString();
-
                   if (snapshot.data!.data.attributes.canonicalTitle != null)
                     title = snapshot.data!.data.attributes.canonicalTitle
                         .toString();
+                  if (snapshot.data!.data.attributes.youtubeVideoId != null)
+                    youtubeVideoId =
+                        snapshot.data!.data.attributes.youtubeVideoId!;
 
                   if (snapshot.data!.data.attributes.status != null)
                     statue = snapshot.data!.data.attributes.status.toString();
@@ -93,6 +96,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                     episodeLength: episodeLength,
                     characterUrl: snapshot
                         .data!.data.relationships.animeCharacters.links.related,
+                    youtubeVideoId: youtubeVideoId,
                   );
                 }
             }
