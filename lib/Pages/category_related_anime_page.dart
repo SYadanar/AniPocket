@@ -1,6 +1,8 @@
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_genres.dart';
+import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -68,12 +70,20 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
             } else {
               rating = "N/A";
             }
-            return AnimeCardForGenres(
-              imageUrl: relatedAnimeList.attributes.posterImage.original,
-              // rating: relatedAnimeList.attributes.averageRating,
-              rating: rating,
-              category: relatedAnimeList.relationships.categories.links.related,
-              animeName: relatedAnimeList.attributes.canonicalTitle,
+            return InkWell(
+              onTap: () {
+                AutoRouter.of(context).push(
+                  AnimeDetailRoute(clickedUrl: relatedAnimeList.links.self),
+                );
+              },
+              child: AnimeCardForGenres(
+                imageUrl: relatedAnimeList.attributes.posterImage.original,
+                // rating: relatedAnimeList.attributes.averageRating,
+                rating: rating,
+                category:
+                    relatedAnimeList.relationships.categories.links.related,
+                animeName: relatedAnimeList.attributes.canonicalTitle,
+              ),
             );
           }),
         ),

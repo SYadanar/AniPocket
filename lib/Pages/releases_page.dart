@@ -1,6 +1,8 @@
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
+import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -71,13 +73,22 @@ class _ReleasesPageState extends State<ReleasesPage> {
             } else {
               rating = "N/A";
             }
-            return AnimeCardForGeneral(
-              imageUrl:
-                  currentYearReleasesAnimeList.attributes.posterImage.original,
-              rating: rating,
-              animeName: currentYearReleasesAnimeList.attributes.canonicalTitle,
-              category: currentYearReleasesAnimeList
-                  .relationships.categories.links.related,
+            return InkWell(
+              onTap: () {
+                AutoRouter.of(context).push(
+                  AnimeDetailRoute(
+                      clickedUrl: currentYearReleasesAnimeList.links.self),
+                );
+              },
+              child: AnimeCardForGeneral(
+                imageUrl: currentYearReleasesAnimeList
+                    .attributes.posterImage.original,
+                rating: rating,
+                animeName:
+                    currentYearReleasesAnimeList.attributes.canonicalTitle,
+                category: currentYearReleasesAnimeList
+                    .relationships.categories.links.related,
+              ),
             );
           }),
         ),
