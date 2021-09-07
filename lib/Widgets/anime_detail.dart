@@ -1,4 +1,5 @@
 import 'package:anime_app/Widgets/category_list_of_anime.dart';
+import 'package:anime_app/Widgets/youtube_player.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -18,24 +19,26 @@ class AnimeDetail extends StatefulWidget {
   final String episodeCount;
   final String episodeLength;
   final String characterUrl;
-  const AnimeDetail(
-      {Key? key,
-      required this.coverImageUrl,
-      required this.rating,
-      required this.overview,
-      required this.animeTitle,
-      required this.categoryUrl,
-      required this.startDate,
-      required this.endDate,
-      required this.nextRelease,
-      required this.popularityRank,
-      required this.ratingRank,
-      required this.ageRatingGuide,
-      required this.status,
-      required this.episodeCount,
-      required this.episodeLength,
-      required this.characterUrl})
-      : super(key: key);
+  final String youtubeVideoId;
+  const AnimeDetail({
+    Key? key,
+    required this.coverImageUrl,
+    required this.rating,
+    required this.overview,
+    required this.animeTitle,
+    required this.categoryUrl,
+    required this.startDate,
+    required this.endDate,
+    required this.nextRelease,
+    required this.popularityRank,
+    required this.ratingRank,
+    required this.ageRatingGuide,
+    required this.status,
+    required this.episodeCount,
+    required this.episodeLength,
+    required this.characterUrl,
+    required this.youtubeVideoId,
+  }) : super(key: key);
 
   @override
   _AnimeDetailState createState() => _AnimeDetailState();
@@ -77,17 +80,18 @@ class _AnimeDetailState extends State<AnimeDetail> {
                 ),
               ),
               Positioned(
-                  top: 16,
-                  left: 15,
-                  child: InkWell(
-                    onTap: () {
-                      AutoRouter.of(context).pop();
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 18,
-                    ),
-                  ))
+                top: 16,
+                left: 15,
+                child: InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).pop();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    size: 18,
+                  ),
+                ),
+              )
             ],
           ),
           Padding(
@@ -154,11 +158,11 @@ class _AnimeDetailState extends State<AnimeDetail> {
                 SizedBox(
                   height: 10,
                 ),
-                // Category List Start
+                // ----------- Category List Start -----------
                 CategoryListOfAnime(
                   url: widget.categoryUrl,
                 ),
-                // Category List End
+                // ----------- Category List End -----------
                 SizedBox(
                   height: 10,
                 ),
@@ -180,6 +184,12 @@ class _AnimeDetailState extends State<AnimeDetail> {
                     textAlign: TextAlign.justify,
                   ),
                 ),
+                // ---------- Trailer Area Start ----------
+                SizedBox(
+                  height: 20,
+                ),
+                YouTubePlayer(widget.youtubeVideoId),
+                // ---------- Trailer Area End ----------
                 SizedBox(
                   height: 20,
                 ),
