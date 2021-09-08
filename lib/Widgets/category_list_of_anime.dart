@@ -29,7 +29,7 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final response =
-          await ApiService().getRelatedCategoryList(widget.url, pageKey);
+          await ApiService().getRelatedCategoryList(widget.url, 10, pageKey);
 
       final bool isLastPage = response.meta.count <= pageKey;
       if (isLastPage) {
@@ -56,8 +56,8 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
           return InkWell(
             onTap: () {
               AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
-                    clickedUrl: categoryList.relationships.anime.links.related,
-                    clickedGenreName: categoryList.attributes.title));
+                  clickedUrl: categoryList.relationships.anime.links.related,
+                  clickedGenreName: categoryList.attributes.title));
             },
             child: Card(
               elevation: 4,

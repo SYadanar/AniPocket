@@ -5,7 +5,6 @@ import 'package:anime_app/Models/For_Anime_Detail/detail_response.dart';
 import 'package:dio/dio.dart';
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
-import 'package:anime_app/Models/For_Genre/genre_list_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:dio/dio.dart';
@@ -73,10 +72,10 @@ class ApiService {
   // ------ For Category List of Selected Anime ------
   // https://kitsu.io/api/edge/anime/<<ANIME_ID>>/categories?page[limit]=10&page[offset]=0=0
   Future<CategoryListResponse> getRelatedCategoryList(
-      String baseUrl, int page) async {
+      String baseUrl, int limit, int page) async {
     try {
       final Response response = await Dio().get(baseUrl, queryParameters: {
-        'page[limit]': 10,
+        'page[limit]': limit,
         'page[offset]': page,
       });
       return CategoryListResponse.fromJson(jsonDecode(response.data));

@@ -1,5 +1,5 @@
-import 'package:anime_app/router/router.gr.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:anime_app/Models/For_Category/category_list_response.dart';
+import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
 
 class AnimeCardForGeneral extends StatelessWidget {
@@ -27,6 +27,7 @@ class AnimeCardForGeneral extends StatelessWidget {
                 width: 150,
                 height: 194,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
@@ -86,16 +87,46 @@ class AnimeCardForGeneral extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          SizedBox(
-            width: 150,
-            child: Text(
-              "Action",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Color.fromRGBO(0, 0, 0, 0.65),
-              ),
-            ),
+          FutureBuilder<CategoryListResponse>(
+            future: ApiService().getRelatedCategoryList(category, 1, 0),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Wrap(
+                    children: [
+                      const CircularProgressIndicator(),
+                    ],
+                  );
+                default:
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error.toString()),
+                    );
+                  } else {
+                    return SizedBox(
+                      width: 150,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: new NeverScrollableScrollPhysics(),
+                        itemCount: snapshot.data!.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 150,
+                            child: Text(
+                              snapshot.data!.data[index].attributes.title,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(0, 0, 0, 0.65),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }
+              }
+            },
           ),
           SizedBox(
             width: 150,

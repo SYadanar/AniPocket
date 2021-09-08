@@ -1,6 +1,6 @@
-import 'dart:ui';
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
+import 'package:anime_app/Widgets/anime_card_for_general.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
       final response = await ApiService().getAll(pageKey);
 
       final bool isLastPage = response.meta.count == pageKey;
-      print("is last $isLastPage");
       if (isLastPage) {
         _pagingController.appendLastPage(response.animeData);
       } else {
@@ -57,348 +56,136 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: DrawerList(),
       ),
-      body:
-          /*(
-            //padding: const EdgeInsets.symmetric(horizontal: 16),
-            child:*/
-          Center(
-        child: FutureBuilder<AnimeResponse>(
-          future: ApiService().getAnime(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return const CircularProgressIndicator();
-
-              default:
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
+      body: ListView(
+        children: [
+          // ----- Recommended List Start -----
+          Container(
+            width: double.infinity,
+            height: 20,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              "Recommended",
+              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 270,
+            margin: const EdgeInsets.only(top: 10),
+            child: Center(
+              child: FutureBuilder<AnimeResponse>(
+                future: ApiService().getAnime(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Wrap(
+                        children: [
+                          const CircularProgressIndicator(),
+                        ],
+                      );
+                    default:
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else {
+                        return ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(
+                              width: 20,
+                            );
+                          },
+                          padding: EdgeInsets.only(left: 16, right: 16),
+                          itemCount: snapshot.data!.animeData.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            String rating;
+                            if (snapshot.data!.animeData[index].attributes
+                                    .averageRating !=
+                                null) {
+                              rating = snapshot.data!.animeData[index]
+                                  .attributes.averageRating!;
+                            } else {
+                              rating = "N/A";
+                            }
+                            return InkWell(
+                              onTap: () {
+                                AutoRouter.of(context).push(
+                                  AnimeDetailRoute(
+                                      clickedUrl:
+                                          "https://kitsu.io/api/edge${snapshot.data!.animeData[index].links.self}"),
+                                );
+                              },
+                              child: AnimeCardForGeneral(
+                                imageUrl: snapshot.data!.animeData[index]
+                                    .attributes.posterImage.original,
+                                rating: rating,
+                                animeName: snapshot.data!.animeData[index]
+                                    .attributes.canonicalTitle,
+                                category:
+                                    "https://kitsu.io/api/edge${snapshot.data!.animeData[index].relationships.categories.links.related}",
+                              ),
+                            );
+                          },
+                        );
+                      }
+                  }
+                },
+              ),
+            ),
+          ),
+          // ----- Recommended List End -----
+          SizedBox(height: 10),
+          // ----- All Anime List Start -----
+          Container(
+            width: double.infinity,
+            height: 20,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              "All Anime",
+              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 10),
+            child: PagedGridView<int, AllAnimeData>(
+              physics: new NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              pagingController: _pagingController,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 10,
+              ),
+              builderDelegate: PagedChildBuilderDelegate<AllAnimeData>(
+                itemBuilder: (context, allanime, index) {
+                  String rating;
+                  if (allanime.attributes.averageRating != null) {
+                    rating = allanime.attributes.averageRating!;
+                  } else {
+                    rating = "N/A";
+                  }
+                  return InkWell(
+                    onTap: () {
+                      AutoRouter.of(context).push(
+                        AnimeDetailRoute(clickedUrl: allanime.links.self),
+                      );
+                    },
+                    child: AnimeCardForGeneral(
+                      imageUrl: allanime.attributes.posterImage.original,
+                      rating: rating,
+                      animeName: allanime.attributes.canonicalTitle,
+                      category: allanime.relationships.categories.links.related,
+                    ),
                   );
-                } else {
-                  return Scaffold(
-                      body: Column(children: [
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 20,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            child: Text(
-                              "Recommended",
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.grey[700]),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                        width: double.infinity,
-                        height: 270,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return SizedBox(
-                                width: 20,
-                              );
-                            },
-                            padding: EdgeInsets.only(left: 20, right: 20),
-                            itemCount: snapshot.data!.animeData.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              String rating;
-                              if (snapshot.data!.animeData[index].attributes
-                                      .averageRating !=
-                                  null) {
-                                rating = snapshot.data!.animeData[index]
-                                    .attributes.averageRating!;
-                              } else {
-                                rating = "N/A";
-                              }
-                              return GestureDetector(
-                                  onTap: () {
-                                    AutoRouter.of(context).push(
-                                      AnimeDetailRoute(
-                                          clickedUrl:
-                                              "https://kitsu.io/api/edge${snapshot.data!.animeData[index].links.self}"),
-                                    );
-                                  },
-                                  child: Container(
-                                      child: Column(
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            width: 150,
-                                            height: 194,
-                                            decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.black
-                                                      .withOpacity(0.25),
-                                                  spreadRadius: 0,
-                                                  blurRadius: 10,
-                                                  offset: Offset(3, 3),
-                                                ),
-                                              ],
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(15),
-                                              ),
-                                              child: Image.network(
-                                                snapshot
-                                                    .data!
-                                                    .animeData[index]
-                                                    .attributes
-                                                    .posterImage
-                                                    .original,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            bottom: 0,
-                                            left: (150 - 65) / 2,
-                                            child: Container(
-                                              transform:
-                                                  Matrix4.translationValues(
-                                                      0.0, 10.0, 0.0),
-                                              width: 65,
-                                              height: 22,
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 5),
-                                              decoration: BoxDecoration(
-                                                color: Color.fromRGBO(
-                                                    255, 243, 58, 1),
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(15),
-                                                ),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Icon(
-                                                    Icons.stars_rounded,
-                                                    // color: Color.fromRGBO(255, 195, 0, 1),
-                                                    size: 15,
-                                                  ),
-                                                  Text(
-                                                    rating,
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: Color.fromRGBO(
-                                                          0, 0, 0, 0.65),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      SizedBox(
-                                        width: 150,
-                                        child: Text(
-                                          "Action",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.65),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 150,
-                                        child: Text(
-                                          snapshot.data!.animeData[index]
-                                              .attributes.canonicalTitle,
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w400),
-                                          overflow: TextOverflow.fade,
-                                          maxLines: 2,
-                                          softWrap: true,
-                                        ),
-                                      ),
-                                    ],
-                                  )));
-                            })),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 20,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            child: Text(
-                              "All Anime",
-                              style: TextStyle(
-                                  fontSize: 16, color: Colors.grey[700]),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                        width: double.infinity,
-                        height: 300,
-                        child: PagedGridView<int, AllAnimeData>(
-                            pagingController: _pagingController,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 19 / 38,
-                                    mainAxisSpacing: 15,
-                                    crossAxisSpacing: 20,
-                                    crossAxisCount: 2),
-                            padding: EdgeInsets.only(
-                                top: 20, bottom: 10, left: 20, right: 20),
-                            builderDelegate:
-                                PagedChildBuilderDelegate<AllAnimeData>(
-                                    itemBuilder: (context, allanime, index) {
-                              String rating;
-                              if (allanime.attributes.averageRating != null) {
-                                rating = allanime.attributes.averageRating!;
-                              } else {
-                                rating = "N/A";
-                              }
-                              return InkWell(
-                                onTap: () {
-                                  AutoRouter.of(context).push(
-                                    AnimeDetailRoute(
-                                        clickedUrl: allanime.links.self),
-                                  );
-                                },
-                                child: Container(
-                                    child: Column(
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          width: 150,
-                                          height: 194,
-                                          decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.25),
-                                                spreadRadius: 0,
-                                                blurRadius: 10,
-                                                offset: Offset(3, 3),
-                                              ),
-                                            ],
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(15),
-                                            ),
-                                            child: Image.network(
-                                              allanime.attributes.posterImage
-                                                  .original,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: (150 - 65) / 2,
-                                          child: Container(
-                                            transform:
-                                                Matrix4.translationValues(
-                                                    0.0, 10.0, 0.0),
-                                            width: 65,
-                                            height: 22,
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5),
-                                            decoration: BoxDecoration(
-                                              color: Color.fromRGBO(
-                                                  255, 243, 58, 1),
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(15),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Icon(
-                                                  Icons.stars_rounded,
-                                                  // color: Color.fromRGBO(255, 195, 0, 1),
-                                                  size: 15,
-                                                ),
-                                                Text(
-                                                  rating,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Color.fromRGBO(
-                                                        0, 0, 0, 0.65),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    SizedBox(
-                                      width: 150,
-                                      child: Text(
-                                        "Action",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color.fromRGBO(0, 0, 0, 0.65),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 150,
-                                      child: Text(
-                                        allanime.attributes.canonicalTitle,
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w400),
-                                        overflow: TextOverflow.fade,
-                                        maxLines: 2,
-                                        softWrap: true,
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                              );
-                            }))),
-                  ]));
-                }
-            }
-          },
-        ),
+                },
+              ),
+            ),
+          ),
+          // ----- All Anime List Start -----
+        ],
       ),
     );
   }
