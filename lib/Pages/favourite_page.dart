@@ -17,10 +17,7 @@ class FavouritePage extends StatelessWidget {
       children: [
         
         
-        ElevatedButton(onPressed: (){
-          //AutoRouter.of(context).push(DetailRoute(id: 2));
-          //AutoRouter.of(context).pop();
-        }, child: Text('Page'))
+       
       ],
     ));
   }

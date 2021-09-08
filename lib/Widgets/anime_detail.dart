@@ -134,16 +134,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Rating',
-                        style: TextStyle(
-                          color: Color.fromRGBO(0, 0, 0, 0.65),
-                          fontSize: 14,
-                        ),
-                      ),
+                      
                       SizedBox(
                         width: 10,
                       ),
