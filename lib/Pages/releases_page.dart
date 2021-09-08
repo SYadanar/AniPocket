@@ -59,7 +59,7 @@ class _ReleasesPageState extends State<ReleasesPage> {
         child: PagedGridView<int, RelatedAnimeList>(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 1 / 1.2,
+            childAspectRatio: 19 / 35,
             mainAxisSpacing: 5,
             crossAxisSpacing: 10,
           ),

@@ -53,6 +53,9 @@ flutter:
     - assets/images/sample_poster.jpg
     - assets/images/Example.jpg
     - assets/images/no_img_available.png
+    - assets/images/LogoSample.png
+    - assets/images/hi.jpg
+    - assets/images/BackGroundSample.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

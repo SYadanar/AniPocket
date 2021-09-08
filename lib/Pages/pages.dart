@@ -9,3 +9,4 @@ export 'user_profile_page.dart';
 export 'user_register_page.dart';
 export 'user_sign_page.dart';
 export 'category_related_anime_page.dart';
+export 'testing_page.dart';
