@@ -1,4 +1,4 @@
-import 'dart:ui';
+//import 'dart:ui';
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
@@ -53,6 +53,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        actions: <Widget>[
+          IconButton(onPressed: () {}, icon: Icon(Icons.search))
+        ],
       ),
       drawer: Drawer(
         child: DrawerList(),

@@ -81,11 +81,6 @@ class MyAppRouter extends _i1.RootStackRouter {
               key: args.key,
               clickedUrl: args.clickedUrl,
               clickedGenreName: args.clickedGenreName);
-        }),
-    TestintRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i3.TestintPage();
         })
   };
 
@@ -103,8 +98,7 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(UserSignUpRoute.name, path: '/user-sign-up-page'),
         _i1.RouteConfig(CategoryListRoute.name, path: '/category-list-page'),
         _i1.RouteConfig(CategoryRelatedAnimeRoute.name,
-            path: '/category-related-anime-page'),
-        _i1.RouteConfig(TestintRoute.name, path: '/testint-page')
+            path: '/category-related-anime-page')
       ];
 }
 
@@ -210,10 +204,4 @@ class CategoryRelatedAnimeRouteArgs {
   final String clickedUrl;
 
   final String clickedGenreName;
-}
-
-class TestintRoute extends _i1.PageRouteInfo {
-  const TestintRoute() : super(name, path: '/testint-page');
-
-  static const String name = 'TestintRoute';
 }

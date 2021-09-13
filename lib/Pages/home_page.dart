@@ -1,5 +1,6 @@
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
+import 'package:anime_app/Models/For_search_bar/search_.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';
@@ -7,6 +8,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:anime_app/Widgets/search_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -51,8 +53,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         title: Text('Home'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: ToDoSearchDelegate());
+              },
+              icon: Icon(Icons.search))
+        ],
       ),
       drawer: Drawer(
         child: DrawerList(),
