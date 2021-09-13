@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            height: 620,
+            height: 630,
             width: double.infinity,
             margin: const EdgeInsets.only(top: 10),
             child: PagedGridView<int, AllAnimeData>(
