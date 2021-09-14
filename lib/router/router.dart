@@ -17,7 +17,6 @@ import 'package:anime_app/Pages/pages.dart';
     AutoRoute(page: UserSignUpPage),
     AutoRoute(page: CategoryListPage),
     AutoRoute(page: CategoryRelatedAnimePage),
-    AutoRoute(page: TestintPage)
   ],
 )
 class $MyAppRouter {}
