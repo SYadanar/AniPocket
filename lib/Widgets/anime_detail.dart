@@ -121,7 +121,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       child: Icon(
                         Icons.circle,
                         color: Color.fromRGBO(255, 255, 255, 0.6),
-                        size: 30,
+                        size: 32,
                       ),
                     ),
                   ),
@@ -134,7 +134,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       },
                       child: Icon(
                         Icons.arrow_back_ios_new_outlined,
-                        size: 18,
+                        size: 20,
                       ),
                     ),
                   ),
@@ -213,8 +213,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 10),
+                      padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                       child: Column(
                         children: [
                           Container(
@@ -294,9 +293,6 @@ class _AnimeDetailState extends State<AnimeDetail> {
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
                     ),
                     Container(
                       height: 230,
