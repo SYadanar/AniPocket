@@ -1,6 +1,5 @@
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
-import 'package:anime_app/Models/For_search_bar/search_.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';

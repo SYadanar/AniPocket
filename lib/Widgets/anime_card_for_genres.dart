@@ -181,12 +181,9 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                 ],
               ),
               child: Image.network(
-                widget.imageUrl
+                widget.imageUrl,
+                fit: BoxFit.fill,
               ),
-              // child: Image.network(
-              //   imageUrl,
-              //   fit: BoxFit.fill,
-              // ),
             ),
           )
         ],

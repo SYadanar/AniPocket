@@ -88,23 +88,73 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
               );
             } else {
               return ListView.builder(
-                  itemCount: snapshot.data!.animeDataForName.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        snapshot.data!.animeDataForName[index].attributes
-                            .canonicalTitle,
-                        style: TextStyle(color: Colors.grey[800]),
+                itemCount: snapshot.data!.animeDataForName.length,
+                itemBuilder: (context, index) {
+                  // return Card(
+                  //   child: ListTile(
+                  //     title: Text(
+                  //       snapshot.data!.animeDataForName[index].attributes
+                  //           .canonicalTitle,
+                  //       style: TextStyle(color: Colors.grey[800]),
+                  //     ),
+                  //     onTap: () {
+                  //       AutoRouter.of(context).push(
+                  //         AnimeDetailRoute(
+                  //             clickedUrl: snapshot
+                  //                 .data!.animeDataForName[index].links.self),
+                  //       );
+                  //     },
+                  //   ),
+                  // );
+
+                  return InkWell(
+                    onTap: () {
+                      AutoRouter.of(context).push(
+                        AnimeDetailRoute(
+                            clickedUrl: snapshot
+                                .data!.animeDataForName[index].links.self),
+                      );
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 10),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 80,
+                              width: 60,
+                              child: Image.network(
+                                snapshot.data!.animeDataForName[index]
+                                    .attributes.posterImage.original,
+                                errorBuilder: (BuildContext context,
+                                    Object exception, StackTrace? stackTrace) {
+                                  return Image.asset(
+                                    "assets/images/no_img_available.png",
+                                  );
+                                },
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width - 119,
+                              child: Text(
+                                snapshot.data!.animeDataForName[index]
+                                    .attributes.canonicalTitle,
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      onTap: () {
-                        AutoRouter.of(context).push(
-                          AnimeDetailRoute(
-                              clickedUrl: snapshot
-                                  .data!.animeDataForName[index].links.self),
-                        );
-                      },
-                    );
-                  });
+                    ),
+                  );
+                },
+              );
             }
         }
       },
