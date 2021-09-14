@@ -48,8 +48,14 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
     return Container(
       width: double.infinity,
       height: 40,
-      child: PagedListView<int, CategoryList>(
+      child: PagedListView.separated(
         scrollDirection: Axis.horizontal,
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            width: 10,
+          );
+        },
+        padding: EdgeInsets.only(left: 16, right: 16),
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<CategoryList>(
             itemBuilder: (context, categoryList, index) {

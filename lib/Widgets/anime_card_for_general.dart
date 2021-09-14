@@ -27,7 +27,6 @@ class AnimeCardForGeneral extends StatelessWidget {
                 width: 150,
                 height: 194,
                 decoration: BoxDecoration(
-                  color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
@@ -85,7 +84,7 @@ class AnimeCardForGeneral extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 14,
           ),
           FutureBuilder<CategoryListResponse>(
             future: ApiService().getRelatedCategoryList(category, 1, 0),
@@ -94,7 +93,11 @@ class AnimeCardForGeneral extends StatelessWidget {
                 case ConnectionState.waiting:
                   return Wrap(
                     children: [
-                      const CircularProgressIndicator(),
+                      SizedBox(
+                        child: const CircularProgressIndicator(),
+                        width: 20,
+                        height: 20,
+                      ),
                     ],
                   );
                 default:
@@ -119,6 +122,9 @@ class AnimeCardForGeneral extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                                 color: Color.fromRGBO(0, 0, 0, 0.65),
                               ),
+                              overflow: TextOverflow.fade,
+                              maxLines: 2,
+                              softWrap: true,
                             ),
                           );
                         },

@@ -29,7 +29,7 @@ class WelcomePage extends StatelessWidget {
             FavouriteAnimeCards(),
             // AnimeCardForGeneral(),
             // AnimeCardForGenres(),
-            CharacterCard(),
+            // CharacterCard(),
           ],
         ));
   }

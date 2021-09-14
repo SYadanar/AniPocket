@@ -19,7 +19,7 @@ class YouTubePlayer extends StatelessWidget {
       child: YoutubePlayer(
         controller: YoutubePlayerController(
           initialVideoId: youtubeVideoId,
-          flags: YoutubePlayerFlags(autoPlay: true, mute: false),
+          flags: YoutubePlayerFlags(autoPlay: false, mute: false),
         ),
         liveUIColor: Colors.amber,
       ),

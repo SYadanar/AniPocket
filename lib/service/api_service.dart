@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
+import 'package:anime_app/Models/For_Anime_Character/character_detail_response.dart';
+import 'package:anime_app/Models/For_Anime_Character/character_response.dart';
 import 'package:anime_app/Models/For_Anime_Detail/detail_response.dart';
 import 'package:dio/dio.dart';
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
-import 'package:auto_route/annotations.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class ApiService {
   //final String api_key = "d442b4d9-2667-479e-bfb0-5e7ef694664e";
@@ -129,6 +128,40 @@ class ApiService {
     try {
       final Response response = await Dio().get(baseUrl);
       return AnimeDetailResponse.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The response is ... ${e.toString()}");
+      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
+    }
+  }
+
+  // ------ For Anime Character List ------
+  // https://kitsu.io/api/edge/anime/<<ANIME_ID>>/characters?page[limit]=10&page[offset]=0
+  Future<CharacterResponse> getAnimeCharacterList(
+      String animeId, int limit, int page) async {
+    try {
+      final Response response = await Dio().get(
+          'https://kitsu.io/api/edge/anime/$animeId/characters',
+          queryParameters: {
+            'page[limit]': limit,
+            'page[offset]': page,
+          });
+      // print("Url...${response.realUri}");
+      // print("API response ... ${response.data}");
+      return CharacterResponse.fromJson(jsonDecode(response.data));
+    } on DioError catch (e) {
+      print("The response is ... ${e.toString()}");
+      throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
+    }
+  }
+
+  // ------ For Anime Character Detail ------
+  // https://kitsu.io/api/edge/media-characters/<<ANIME_CHARACTER_ID>>/character
+  // https://kitsu.io/api/edge/characters/<<ANIME_CHARACTER_ID>>
+  Future<CharacterDetailResponse> getCharacterDetail(String characterId) async {
+    try {
+      final Response response = await Dio().get(
+          'https://kitsu.io/api/edge/media-characters/$characterId/character');
+      return CharacterDetailResponse.fromJson(jsonDecode(response.data));
     } on DioError catch (e) {
       print("The response is ... ${e.toString()}");
       throw Exception("The ERROR Code is ... ${e.response?.statusCode}");
