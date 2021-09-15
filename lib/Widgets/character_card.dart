@@ -14,13 +14,15 @@ class CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          AutoRouter.of(context)
-              .push(CharacterDetailRoute(characterId: characterId));
-        },
-        child: Wrap(
-          children: [
-            Card(
+      onTap: () {
+        AutoRouter.of(context)
+            .push(CharacterDetailRoute(characterId: characterId));
+      },
+      child: Wrap(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Card(
               elevation: 10,
               color: Colors.transparent,
               child: ClipRRect(
@@ -45,11 +47,6 @@ class CharacterCard extends StatelessWidget {
                           borderRadius: BorderRadius.all(
                             Radius.circular(10),
                           ),
-                          // child: Image.asset(
-                          //   'assets/images/sample_poster.jpg',
-                          //   fit: BoxFit.fill,
-                          //   // height: 184,
-                          // ),
                           child: Image.network(
                             imageUrl,
                             errorBuilder: (BuildContext context,
@@ -71,11 +68,11 @@ class CharacterCard extends StatelessWidget {
                         child: Text(
                           characterName,
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
                           overflow: TextOverflow.fade,
-                          maxLines: 2,
+                          maxLines: 1,
                           softWrap: true,
                           textAlign: TextAlign.center,
                         ),
@@ -85,7 +82,9 @@ class CharacterCard extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

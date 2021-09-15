@@ -53,50 +53,51 @@ class _CharacterListPageState extends State<CharacterListPage> {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1 / 1.3,
-          mainAxisSpacing: 5,
+          mainAxisSpacing: 15,
           crossAxisSpacing: 5,
         ),
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<Data>(
-            itemBuilder: (context, character, index) {
-          return Center(
-            child: FutureBuilder<CharacterDetailResponse>(
-              future: ApiService().getCharacterDetail(character.id),
-              builder: (context, snapshot) {
-                String characterImg = "N/A";
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return Wrap(
-                      children: [
-                        SizedBox(
-                          child: const CircularProgressIndicator(),
-                          height: 20,
-                          width: 20,
-                        ),
-                      ],
-                    );
-                  default:
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(snapshot.error.toString()),
+          itemBuilder: (context, character, index) {
+            return Center(
+              child: FutureBuilder<CharacterDetailResponse>(
+                future: ApiService().getCharacterDetail(character.id),
+                builder: (context, snapshot) {
+                  String characterImg = "N/A";
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Wrap(
+                        children: [
+                          SizedBox(
+                            child: const CircularProgressIndicator(),
+                            height: 20,
+                            width: 20,
+                          ),
+                        ],
                       );
-                    } else {
-                      if (snapshot.data!.data.attributes.image != null) {
-                        characterImg =
-                            snapshot.data!.data.attributes.image!.original;
+                    default:
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else {
+                        if (snapshot.data!.data.attributes.image != null) {
+                          characterImg =
+                              snapshot.data!.data.attributes.image!.original;
+                        }
+                        return CharacterCard(
+                          characterId: character.id,
+                          imageUrl: characterImg,
+                          characterName:
+                              snapshot.data!.data.attributes.canonicalName,
+                        );
                       }
-                      return CharacterCard(
-                        characterId: character.id,
-                        imageUrl: characterImg,
-                        characterName:
-                            snapshot.data!.data.attributes.canonicalName,
-                      );
-                    }
-                }
-              },
-            ),
-          );
-        }),
+                  }
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

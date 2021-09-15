@@ -56,7 +56,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
         child: PagedGridView<int, CategoryList>(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 3,
+            childAspectRatio: 2.8,
             mainAxisSpacing: 5,
             crossAxisSpacing: 10,
           ),
@@ -80,13 +80,17 @@ class _CategoryListPageState extends State<CategoryListPage> {
                       bottomLeft: Radius.circular(4),
                     ),
                   ),
-                  child: Center(
-                    child: Text(
-                      categoryList.attributes.title,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(0, 0, 0, 0.65),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    child: Center(
+                      child: Text(
+                        categoryList.attributes.title,textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          // color: Color.fromRGBO(0, 0, 0, 0.65),
+                        ),
                       ),
                     ),
                   ),

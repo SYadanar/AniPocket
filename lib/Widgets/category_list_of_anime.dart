@@ -77,7 +77,8 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
                     Text(
                       categoryList.attributes.title,
                       textAlign: TextAlign.center,
-                      // style: TextStyle(fontSize: 18),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

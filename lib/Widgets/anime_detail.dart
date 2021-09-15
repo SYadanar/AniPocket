@@ -9,6 +9,7 @@ import 'package:anime_app/service/api_service.dart';
 import 'package:anime_app/temp_data.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AnimeDetail extends StatefulWidget {
@@ -152,6 +153,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                           horizontal: 16, vertical: 10),
                       child: Column(
                         children: [
+                          // ------ Anime Title Start ------
                           Container(
                             width: double.infinity,
                             child: Row(
@@ -162,7 +164,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                   width: MediaQuery.of(context).size.width - 70,
                                   child: Text(
                                     widget.animeTitle,
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(fontSize: 24),
                                   ),
                                 ),
                                 Container(
@@ -175,9 +177,11 @@ class _AnimeDetailState extends State<AnimeDetail> {
                               ],
                             ),
                           ),
+                          // ------ Anime Title End ------
                           SizedBox(
                             height: 8,
                           ),
+                          // ------ Anime Rating Start ------
                           Container(
                             width: double.infinity,
                             child: Row(
@@ -193,22 +197,24 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                   width: 10,
                                 ),
                                 Text(
-                                  // '83/100',
                                   widget.rating,
-                                  style: TextStyle(fontSize: 16),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
                           ),
+                          // ------ Anime Rating End ------
                         ],
                       ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    // ----------- Category List Start -----------
+                    // ------ Category List Start ------
                     CategoryListOfAnime(url: widget.categoryUrl),
-                    // ----------- Category List End -----------
+                    // ------ Category List End ------
                     SizedBox(
                       height: 10,
                     ),
@@ -216,11 +222,16 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                       child: Column(
                         children: [
+                          // ------ Anime Overview Start ------
                           Container(
                             width: double.infinity,
                             child: Text(
-                              "Review",
-                              style: TextStyle(fontSize: 18),
+                              "Overview",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(0, 0, 0, 0.65),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -230,31 +241,38 @@ class _AnimeDetailState extends State<AnimeDetail> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             width: double.infinity,
                             child: Text(
-                              // 'Write Review here..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................',
                               widget.overview,
-                              style: TextStyle(height: 1.5),
+                              // style: TextStyle(height: 1.5, fontSize: 16),
+                              style: GoogleFonts.openSans(
+                                height: 1.5,
+                                fontSize: 14,
+                              ),
                               textAlign: TextAlign.justify,
                             ),
                           ),
-                          // ---------- Trailer Area Start ----------
+                          // ------ Anime Overview End ------
                           SizedBox(
                             height: 20,
                           ),
+                          // ------ Trailer Start ------
                           Container(
                             child: widget.youtubeVideoId != "N/A"
                                 ? YouTubePlayer(widget.youtubeVideoId)
                                 : Text(""),
                           ),
-                          // ---------- Trailer Area End ----------
+                          // ------ Trailer End ------
                           SizedBox(
                             height: 20,
                           ),
-                          // ---------- More Info Area Start ----------
+                          // ------ Anime More Info Start ------
                           Container(
                             width: double.infinity,
                             child: Text(
                               "More Information",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -270,11 +288,11 @@ class _AnimeDetailState extends State<AnimeDetail> {
                               status: widget.status,
                               episodeCount: widget.episodeCount,
                               episodeLength: widget.episodeLength),
-                          // ---------- More Info Area End ----------
+                          // ------ Anime More Info End ------
                           SizedBox(
                             height: 18,
                           ),
-                          // ---------- Character Area Start ----------
+                          // ------ Characters Start ------
                           Container(
                             width: double.infinity,
                             child: Row(
@@ -282,14 +300,19 @@ class _AnimeDetailState extends State<AnimeDetail> {
                               children: [
                                 Text(
                                   "Characters",
-                                  style: TextStyle(fontSize: 18),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                                 TextButton(
                                   onPressed: () {
                                     AutoRouter.of(context).push(
-                                        CharacterListRoute(
-                                            animeId: widget.animeId,
-                                            animeName: widget.animeTitle));
+                                      CharacterListRoute(
+                                        animeId: widget.animeId,
+                                        animeName: widget.animeTitle,
+                                      ),
+                                    );
                                   },
                                   child: Text("See more"),
                                 )
@@ -357,7 +380,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                         ),
                       ),
                     ),
-                    // ---------- Character Area End ----------
+                    // ------ Characters End ------
                   ],
                 );
               },

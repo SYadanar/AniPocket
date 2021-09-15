@@ -75,7 +75,7 @@ class AnimeCardForGeneral extends StatelessWidget {
                         rating!,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(0, 0, 0, 0.65),
                         ),
                       ),
@@ -116,7 +116,7 @@ class AnimeCardForGeneral extends StatelessWidget {
                         snapshot.data!.data.first.attributes.title,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(0, 0, 0, 0.65),
                         ),
                         overflow: TextOverflow.fade,
@@ -135,7 +135,7 @@ class AnimeCardForGeneral extends StatelessWidget {
             width: 150,
             child: Text(
               animeName,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 18),
               overflow: TextOverflow.fade,
               maxLines: 2,
               softWrap: true,

@@ -141,7 +141,7 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
                 width: MediaQuery.of(context).size.width - 119,
                 child: Text(
                   animeName,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ],

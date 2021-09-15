@@ -55,14 +55,14 @@ class _ReleasesPageState extends State<ReleasesPage> {
         title: Text('${ReleasesPage.currentYear} Releases'),
       ),
       body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: PagedGridView<int, RelatedAnimeList>(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 1 / 1.6,
+            childAspectRatio: 1 / 1.7,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
           ),
-          // padding: EdgeInsets.only(top: 25),
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
             itemBuilder: (context, currentYearReleasesAnimeList, index) {

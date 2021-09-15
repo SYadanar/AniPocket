@@ -50,17 +50,16 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                   SizedBox(
                     child: Text(
                       widget.animeName,
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                      style: TextStyle(fontSize: 18),
                       overflow: TextOverflow.fade,
                       maxLines: 2,
                       softWrap: true,
                     ),
-                    width: MediaQuery.of(context).size.width - 160,
+                    width: MediaQuery.of(context).size.width - 163,
                   ),
                   // ------ Anime Name End ------
                   SizedBox(
-                    height: 12,
+                    height: 10,
                   ),
                   // ------ Anime Rating Start ------
                   Row(
@@ -75,14 +74,16 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                         child: Text(
                           widget.rating,
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   // ------ Anime Rating End ------
                   SizedBox(
-                    height: 12,
+                    height: 10,
                   ),
                   // ------ Anime Category Start ------
                   FutureBuilder<CategoryListResponse>(
@@ -111,14 +112,14 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                                 snapshot.data!.data.first.attributes.title,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                   color: Color.fromRGBO(0, 0, 0, 0.65),
                                 ),
                                 overflow: TextOverflow.fade,
                                 maxLines: 2,
                                 softWrap: true,
                               ),
-                              width: MediaQuery.of(context).size.width - 160,
+                              width: MediaQuery.of(context).size.width - 163,
                             );
                           }
                       }

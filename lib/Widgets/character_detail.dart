@@ -27,6 +27,7 @@ class CharacterDetailWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
+              // ------ Anime Cover Image Start ------
               ShaderMask(
                 shaderCallback: (rect) {
                   return LinearGradient(
@@ -40,19 +41,21 @@ class CharacterDetailWidget extends StatelessWidget {
                 blendMode: BlendMode.dstIn,
                 child: buildChild(),
               ),
+              // ------ Anime Cover Image End ------
               Positioned(
-                  top: 20,
-                  left: 10,
-                  child: InkWell(
-                    onTap: () {
-                      AutoRouter.of(context).pop();
-                    },
-                    child: Icon(
-                      Icons.circle,
-                      color: Color.fromRGBO(255, 255, 255, 0.6),
-                      size: 30,
-                    ),
-                  )),
+                top: 20,
+                left: 10,
+                child: InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).pop();
+                  },
+                  child: Icon(
+                    Icons.circle,
+                    color: Color.fromRGBO(255, 255, 255, 0.6),
+                    size: 30,
+                  ),
+                ),
+              ),
               Positioned(
                 top: 26,
                 left: 15,
@@ -66,23 +69,23 @@ class CharacterDetailWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              // ------ Character Image Start ------
               Container(
                 transform: Matrix4.translationValues(0.0, 120.0, 0.0),
                 child: Center(
                   child: CircleAvatar(
-                    // radius: (MediaQuery.of(context).size.width / 2) - 145,
                     radius: (MediaQuery.of(context).size.width / 2) - 60,
                     backgroundColor: Color.fromRGBO(7, 59, 58, 1),
                     child: CircleAvatar(
                       radius: (MediaQuery.of(context).size.width / 2) - 68,
                       backgroundImage: NetworkImage(
-                        // "https://images.wondershare.com/filmora/article-images/2-kakashi-hatake.jpg",
                         characterImgUrl,
                       ),
                     ),
                   ),
                 ),
               )
+              // ------ Character Image End ------
             ],
           ),
           Container(
@@ -90,16 +93,19 @@ class CharacterDetailWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // ------ Character Name [Canonical Name] Start ------
                 Container(
                   width: double.infinity,
                   child: Text(
                     canonicalName,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 24),
                   ),
                 ),
+                // ------ Character Name [Canonical Name] End ------
                 SizedBox(
                   height: 20,
                 ),
+                // ------ Character Eng & Japanese Name Start ------
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,15 +116,15 @@ class CharacterDetailWidget extends StatelessWidget {
                             TextSpan(
                               text: "English       ",
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 color: Color.fromRGBO(0, 0, 0, 0.65),
                               ),
                             ),
                             TextSpan(
                               text: englishName,
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               ),
                             ),
@@ -131,15 +137,15 @@ class CharacterDetailWidget extends StatelessWidget {
                             TextSpan(
                               text: "Japanese   ",
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 color: Color.fromRGBO(0, 0, 0, 0.65),
                               ),
                             ),
                             TextSpan(
                               text: japaneseName,
                               style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               ),
                             ),
@@ -149,15 +155,18 @@ class CharacterDetailWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+                // ------ Character Eng & Japanese Name End ------
                 SizedBox(
                   height: 20,
                 ),
+                // ------ About Character Start ------
                 Container(
                   child: Text(
                     "About $canonicalName",
                     style: TextStyle(
                       color: Color.fromRGBO(0, 0, 0, 0.65),
-                      fontSize: 14,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
@@ -171,10 +180,12 @@ class CharacterDetailWidget extends StatelessWidget {
                       'p': Style(
                         lineHeight: LineHeight(1.5),
                         textAlign: TextAlign.justify,
+                        fontFamily: Theme.of(context).textTheme.bodyText1!.fontFamily,
                       ),
                     },
                   ),
                 ),
+                // ------ About Character End ------
               ],
             ),
           ),

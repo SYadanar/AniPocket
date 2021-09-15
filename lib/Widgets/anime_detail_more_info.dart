@@ -52,7 +52,7 @@ class MoreInformation extends StatelessWidget {
                         text: startDate,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -74,7 +74,7 @@ class MoreInformation extends StatelessWidget {
                         text: endDate,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -96,7 +96,7 @@ class MoreInformation extends StatelessWidget {
                         text: nextRelease,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -118,7 +118,7 @@ class MoreInformation extends StatelessWidget {
                         text: popularityRank,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -140,7 +140,7 @@ class MoreInformation extends StatelessWidget {
                         text: ratingRank,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -162,7 +162,7 @@ class MoreInformation extends StatelessWidget {
                         text: ageRatingGuide,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -184,7 +184,7 @@ class MoreInformation extends StatelessWidget {
                         text: status,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -206,7 +206,7 @@ class MoreInformation extends StatelessWidget {
                         text: episodeCount,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),
@@ -228,7 +228,7 @@ class MoreInformation extends StatelessWidget {
                         text: episodeLength,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
                       ),

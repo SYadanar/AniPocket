@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             ),
             content: Container(
               width: double.infinity,
-              height: 270,
+              height: 300,
               margin: const EdgeInsets.only(top: 10),
               child: Center(
                 child: FutureBuilder<AnimeResponse>(
@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                 pagingController: _pagingController,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.6,
+                  childAspectRatio: 1 / 1.7,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 5,
                 ),
