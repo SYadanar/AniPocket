@@ -1,7 +1,6 @@
 import 'package:anime_app/Models/For_Anime_Character/character_detail_response.dart';
 import 'package:anime_app/Models/For_Anime_Character/character_response.dart';
 import 'package:anime_app/Widgets/character_card.dart';
-import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

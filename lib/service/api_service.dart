@@ -19,7 +19,7 @@ class ApiService {
   Future<AnimeName> getname({String? query}) async {
     try {
       final Response response =
-          await Dio().get('https://kitsu.io/api/edge/anime?filter[text]=${query}');
+          await Dio().get('https://kitsu.io/api/edge/anime?filter[text]=$query');
       //print("The response is $response");
       //print("The data is ${response.data}");
 

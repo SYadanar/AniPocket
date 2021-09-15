@@ -23,6 +23,7 @@ class AnimeCardForGeneral extends StatelessWidget {
         children: [
           Stack(
             children: [
+              // ------ Anime Poster Start ------
               Container(
                 width: 150,
                 height: 194,
@@ -46,6 +47,9 @@ class AnimeCardForGeneral extends StatelessWidget {
                   ),
                 ),
               ),
+              // ------ Anime Poster End ------
+
+              // ------ Anime Rating Start ------
               Positioned(
                 bottom: 0,
                 left: (150 - 65) / 2,
@@ -65,11 +69,9 @@ class AnimeCardForGeneral extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.stars_rounded,
-                        // color: Color.fromRGBO(255, 195, 0, 1),
                         size: 15,
                       ),
                       Text(
-                        // "83.1",
                         rating!,
                         style: TextStyle(
                           fontSize: 14,
@@ -81,11 +83,13 @@ class AnimeCardForGeneral extends StatelessWidget {
                   ),
                 ),
               ),
+              // ------ Anime Rating End ------
             ],
           ),
           SizedBox(
             height: 14,
           ),
+          // ------ Anime Category Start ------
           FutureBuilder<CategoryListResponse>(
             future: ApiService().getRelatedCategoryList(category, 1, 0),
             builder: (context, snapshot) {
@@ -95,8 +99,8 @@ class AnimeCardForGeneral extends StatelessWidget {
                     children: [
                       SizedBox(
                         child: const CircularProgressIndicator(),
-                        width: 20,
-                        height: 20,
+                        width: 10,
+                        height: 10,
                       ),
                     ],
                   );
@@ -108,32 +112,25 @@ class AnimeCardForGeneral extends StatelessWidget {
                   } else {
                     return SizedBox(
                       width: 150,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: new NeverScrollableScrollPhysics(),
-                        itemCount: snapshot.data!.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            width: 150,
-                            child: Text(
-                              snapshot.data!.data[index].attributes.title,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(0, 0, 0, 0.65),
-                              ),
-                              overflow: TextOverflow.fade,
-                              maxLines: 2,
-                              softWrap: true,
-                            ),
-                          );
-                        },
+                      child: Text(
+                        snapshot.data!.data.first.attributes.title,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(0, 0, 0, 0.65),
+                        ),
+                        overflow: TextOverflow.fade,
+                        maxLines: 2,
+                        softWrap: true,
                       ),
                     );
                   }
               }
             },
           ),
+          // ------ Anime Category End ------
+
+          // ------ Anime Name Start ------
           SizedBox(
             width: 150,
             child: Text(
@@ -144,6 +141,7 @@ class AnimeCardForGeneral extends StatelessWidget {
               softWrap: true,
             ),
           )
+          // ------ Anime Name End ------
         ],
       ),
     );

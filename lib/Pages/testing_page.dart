@@ -1,10 +1,4 @@
-import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
-import 'package:anime_app/Widgets/category_list_of_anime.dart';
-import 'package:anime_app/Widgets/youtube_player.dart';
-import 'package:anime_app/router/router.gr.dart';
-import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 
 
 

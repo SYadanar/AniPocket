@@ -1,7 +1,6 @@
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AnimeCardForGenres extends StatefulWidget {
   final String imageUrl;
@@ -21,48 +20,9 @@ class AnimeCardForGenres extends StatefulWidget {
 }
 
 class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
-  // final PagingController<int, CategoryList> _pagingController =
-  //     PagingController(firstPageKey: 0);
-
-  // @override
-  // void initState() {
-  //   _pagingController.addPageRequestListener((pageKey) {
-  //     _fetchPage(pageKey);
-  //   });
-
-  //   super.initState();
-  // }
-
-  // Future<void> _fetchPage(int pageKey) async {
-  //   try {
-  //     final response = await ApiService()
-  //         .getAnimeCategoryListInString(widget.category, pageKey);
-
-  //     final bool isLastPage = response.meta.count <= pageKey;
-  //     if (isLastPage) {
-  //       _pagingController.appendLastPage(response.data);
-  //     } else {
-  //       final int nextPageKey = pageKey + 10;
-  //       _pagingController.appendPage(response.data, nextPageKey);
-  //     }
-  //   } catch (error) {
-  //     _pagingController.error = error;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return /*InkWell(
-      onTap: () {
-        // print("hi");
-        print(">>>>>>>>>>>>>>");
-        print(widget.category);
-      },
-      child:*/
-        Container(
-      // margin: const EdgeInsets.symmetric(vertical: 15),
-      // width: MediaQuery.of(context).size.width - 200,
-      // height: 160,
+    return Container(
       height: 190,
       child: Stack(
         children: [
@@ -71,8 +31,6 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
             right: 16,
             child: Container(
               padding: EdgeInsets.only(left: 140, top: 10, bottom: 10),
-              // width: MediaQuery.of(context).size.width,
-              // height: 117,
               height: 140,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -88,9 +46,9 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // ------ Anime Name Start ------
                   SizedBox(
                     child: Text(
-                      // "Anime Title Here",
                       widget.animeName,
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
@@ -100,9 +58,11 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                     ),
                     width: MediaQuery.of(context).size.width - 160,
                   ),
+                  // ------ Anime Name End ------
                   SizedBox(
-                    height: 10,
+                    height: 12,
                   ),
+                  // ------ Anime Rating Start ------
                   Row(
                     children: [
                       Icon(
@@ -113,7 +73,6 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Text(
-                          // "83.1",
                           widget.rating,
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w400),
@@ -121,50 +80,56 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                       ),
                     ],
                   ),
+                  // ------ Anime Rating End ------
                   SizedBox(
-                    height: 10,
+                    height: 12,
                   ),
-                  SizedBox(
-                    child: Text(
-                      "Adventure fiction, Dark fantasy, Martial Arts, Action, Adventure fiction, Dark fantasy, Martial Arts, Action, , Dark fantasy, Martial Arts, Action",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(0, 0, 0, 0.65),
-                      ),
-                      overflow: TextOverflow.fade,
-                      maxLines: 2,
-                      softWrap: true,
-                    ),
-                    width: MediaQuery.of(context).size.width - 160,
+                  // ------ Anime Category Start ------
+                  FutureBuilder<CategoryListResponse>(
+                    future: ApiService()
+                        .getRelatedCategoryList(widget.category, 1, 0),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return Wrap(
+                            children: [
+                              SizedBox(
+                                child: const CircularProgressIndicator(),
+                                width: 10,
+                                height: 10,
+                              ),
+                            ],
+                          );
+                        default:
+                          if (snapshot.hasError) {
+                            return Center(
+                              child: Text(snapshot.error.toString()),
+                            );
+                          } else {
+                            return SizedBox(
+                              child: Text(
+                                snapshot.data!.data.first.attributes.title,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(0, 0, 0, 0.65),
+                                ),
+                                overflow: TextOverflow.fade,
+                                maxLines: 2,
+                                softWrap: true,
+                              ),
+                              width: MediaQuery.of(context).size.width - 160,
+                            );
+                          }
+                      }
+                    },
                   ),
-                  // PagedListView<int, CategoryList>(
-                  //   physics: new NeverScrollableScrollPhysics(),
-                  //   // shrinkWrap: true,
-                  //   pagingController: _pagingController,
-                  //   builderDelegate:
-                  //       PagedChildBuilderDelegate<CategoryList>(
-                  //     itemBuilder: (context, categoryList, index) {
-                  //       String categoryListString = "";
-                  //       if (index == 0) {
-                  //         categoryListString =
-                  //             "${categoryList.attributes.title}, ";
-                  //       } else {
-                  //         categoryListString = categoryListString +
-                  //             "${categoryList.attributes.title}, ";
-                  //       }
-                  //       return SizedBox(
-                  //         child: Text(categoryListString),
-                  //         width: MediaQuery.of(context).size.width - 160,
-                  //       );
-                  //       // return Text(categoryList.attributes.title + " | ");
-                  //     },
-                  //   ),
-                  // ),
+                  // ------ Anime Category End ------
                 ],
               ),
             ),
           ),
+          // ------ Anime Poster Start ------
           Positioned(
             bottom: 15,
             child: Container(
@@ -186,6 +151,7 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
               ),
             ),
           )
+          // ------ Anime Poster End ------
         ],
       ),
       //),
