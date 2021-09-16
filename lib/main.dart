@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         // textTheme:
         //     GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
 
-        textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
+        textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
           bodyText2: GoogleFonts.poppins(
             textStyle: textTheme.bodyText2,
           ),

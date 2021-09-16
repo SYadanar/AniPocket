@@ -7,12 +7,6 @@ class YouTubePlayer extends StatelessWidget {
 
   // https://www.youtube.com/watch?v=<<YOUTUBE_VIDEO_ID>>
 
-  // Initiate the Youtube player controller
-  // YoutubePlayerController _controller = YoutubePlayerController(
-  //   initialVideoId: youtubeVideoId,
-  //   flags: YoutubePlayerFlags(autoPlay: true, mute: false),
-  // );
-
   @override
   Widget build(BuildContext context) {
     return Container(

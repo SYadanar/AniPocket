@@ -19,6 +19,7 @@ class AnimeCardForGeneral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 10),
       child: Column(
         children: [
           Stack(

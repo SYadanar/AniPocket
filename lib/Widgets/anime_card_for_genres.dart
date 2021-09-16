@@ -23,6 +23,7 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(left: 16),
       height: 190,
       child: Stack(
         children: [
@@ -30,8 +31,9 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
             bottom: 15,
             right: 16,
             child: Container(
-              padding: EdgeInsets.only(left: 140, top: 10, bottom: 10),
+              padding: EdgeInsets.only(left: 130, top: 10, bottom: 10),
               height: 140,
+              width: MediaQuery.of(context).size.width - 32,
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -55,7 +57,7 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                       maxLines: 2,
                       softWrap: true,
                     ),
-                    width: MediaQuery.of(context).size.width - 163,
+                    width: MediaQuery.of(context).size.width - 178,
                   ),
                   // ------ Anime Name End ------
                   SizedBox(
@@ -119,7 +121,7 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                                 maxLines: 2,
                                 softWrap: true,
                               ),
-                              width: MediaQuery.of(context).size.width - 163,
+                              width: MediaQuery.of(context).size.width - 178,
                             );
                           }
                       }

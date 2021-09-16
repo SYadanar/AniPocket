@@ -164,14 +164,14 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                   width: MediaQuery.of(context).size.width - 70,
                                   child: Text(
                                     widget.animeTitle,
-                                    style: TextStyle(fontSize: 24),
+                                    style: TextStyle(fontSize: 22),
                                   ),
                                 ),
                                 Container(
                                   child: Icon(
                                     Icons.favorite_border_outlined,
                                     color: Colors.red,
-                                    size: 24,
+                                    size: 28,
                                   ),
                                 )
                               ],

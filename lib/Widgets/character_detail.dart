@@ -98,7 +98,7 @@ class CharacterDetailWidget extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     canonicalName,
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 22),
                   ),
                 ),
                 // ------ Character Name [Canonical Name] End ------

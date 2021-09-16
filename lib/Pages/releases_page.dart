@@ -1,5 +1,6 @@
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
+import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:auto_route/auto_route.dart';
@@ -53,6 +54,9 @@ class _ReleasesPageState extends State<ReleasesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('${ReleasesPage.currentYear} Releases'),
+      ),
+      drawer: Drawer(
+        child: DrawerList(),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),

@@ -24,10 +24,6 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
 
   @override
   void initState() {
-    // ApiService()
-    //     .getRelatedAnimeList(widget.clickedUrl, 0)
-    //     .then((value) => print(value.toString()));
-
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
@@ -58,12 +54,10 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
       appBar: AppBar(
         title: Text(widget.clickedGenreName),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16),
-        child: PagedListView<int, RelatedAnimeList>(
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
-              itemBuilder: (context, relatedAnimeList, index) {
+      body: PagedListView<int, RelatedAnimeList>(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
+          itemBuilder: (context, relatedAnimeList, index) {
             String rating;
             if (relatedAnimeList.attributes.averageRating != null) {
               rating = relatedAnimeList.attributes.averageRating!;
@@ -85,7 +79,7 @@ class _CategoryRelatedAnimePageState extends State<CategoryRelatedAnimePage> {
                 animeName: relatedAnimeList.attributes.canonicalTitle,
               ),
             );
-          }),
+          },
         ),
       ),
     );

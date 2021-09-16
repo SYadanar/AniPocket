@@ -51,25 +51,22 @@ class _CategoryListPageState extends State<CategoryListPage> {
       drawer: Drawer(
         child: DrawerList(),
       ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16),
-        child: PagedGridView<int, CategoryList>(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 2.8,
-            mainAxisSpacing: 5,
-            crossAxisSpacing: 10,
-          ),
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<CategoryList>(
-            itemBuilder: (context, categoryList, index) {
-              return InkWell(
-                onTap: () {
-                  AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
-                      clickedUrl:
-                          categoryList.relationships.anime.links.related,
-                      clickedGenreName: categoryList.attributes.title));
-                },
+      body: PagedGridView<int, CategoryList>(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 2.8,
+        ),
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<CategoryList>(
+          itemBuilder: (context, categoryList, index) {
+            return InkWell(
+              onTap: () {
+                AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
+                    clickedUrl: categoryList.relationships.anime.links.related,
+                    clickedGenreName: categoryList.attributes.title));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                 child: Card(
                   elevation: 10,
                   shape: RoundedRectangleBorder(
@@ -81,11 +78,11 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     ),
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Center(
                       child: Text(
-                        categoryList.attributes.title,textAlign: TextAlign.center,
+                        categoryList.attributes.title,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -95,9 +92,9 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

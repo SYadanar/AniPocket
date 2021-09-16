@@ -70,19 +70,20 @@ class _HomePageState extends State<HomePage> {
           StickyHeader(
             header: Container(
               width: double.infinity,
-              height: 40,
+              height: 35,
               alignment: Alignment.centerLeft,
-              color: Colors.grey[300],
+              // color: Colors.grey[300],
+              color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Recommended",
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
             ),
             content: Container(
               width: double.infinity,
               height: 300,
-              margin: const EdgeInsets.only(top: 10),
+              // margin: const EdgeInsets.only(top: 10),
               child: Center(
                 child: FutureBuilder<AnimeResponse>(
                   future: ApiService().getAnime(),
@@ -152,19 +153,20 @@ class _HomePageState extends State<HomePage> {
           StickyHeader(
             header: Container(
               width: double.infinity,
-              height: 40,
+              height: 35,
               alignment: Alignment.centerLeft,
-              color: Colors.grey[300],
+              // color: Colors.grey[300],
+              color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "All Anime",
-                style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
               ),
             ),
             content: Container(
               height: 700,
               width: double.infinity,
-              margin: const EdgeInsets.only(top: 10),
+              // margin: const EdgeInsets.only(top: 10),
               child: PagedGridView<int, AllAnimeData>(
                 scrollDirection: Axis.vertical,
                 pagingController: _pagingController,
