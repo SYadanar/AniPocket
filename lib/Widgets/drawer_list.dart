@@ -34,7 +34,7 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.home),
-            title: Text("HOME"),
+            title: Text("HOME", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
             onTap: () {
               AutoRouter.of(context).push(HomeRoute());
             },
@@ -55,7 +55,7 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.category),
-            title: Text("CATEGORY"),
+            title: Text("CATEGORY", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
             onTap: () {
               AutoRouter.of(context).push(CategoryListRoute());
             },
@@ -76,7 +76,7 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.calendar_today),
-            title: Text("$currentYear RELEASES"),
+            title: Text("$currentYear RELEASES", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
             onTap: () {
               AutoRouter.of(context).push(ReleasesRoute());
             },

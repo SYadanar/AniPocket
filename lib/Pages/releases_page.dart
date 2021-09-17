@@ -1,5 +1,6 @@
 import 'package:anime_app/Models/For_Anime_Card/related_anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
+import 'package:anime_app/Widgets/drawer_list.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:auto_route/auto_route.dart';
@@ -54,43 +55,47 @@ class _ReleasesPageState extends State<ReleasesPage> {
       appBar: AppBar(
         title: Text('${ReleasesPage.currentYear} Releases'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+      drawer: Drawer(
+        child: DrawerList(),
+      ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: PagedGridView<int, RelatedAnimeList>(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 19 / 35,
+            childAspectRatio: 1 / 1.7,
             mainAxisSpacing: 5,
-            crossAxisSpacing: 10,
+            crossAxisSpacing: 5,
           ),
-          padding: EdgeInsets.only(top: 25),
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
-              itemBuilder: (context, currentYearReleasesAnimeList, index) {
-            String rating;
-            if (currentYearReleasesAnimeList.attributes.averageRating != null) {
-              rating = currentYearReleasesAnimeList.attributes.averageRating!;
-            } else {
-              rating = "N/A";
-            }
-            return InkWell(
-              onTap: () {
-                AutoRouter.of(context).push(
-                  AnimeDetailRoute(
-                      clickedUrl: currentYearReleasesAnimeList.links.self),
-                );
-              },
-              child: AnimeCardForGeneral(
-                imageUrl: currentYearReleasesAnimeList
-                    .attributes.posterImage.original,
-                rating: rating,
-                animeName:
-                    currentYearReleasesAnimeList.attributes.canonicalTitle,
-                category: currentYearReleasesAnimeList
-                    .relationships.categories.links.related,
-              ),
-            );
-          }),
+            itemBuilder: (context, currentYearReleasesAnimeList, index) {
+              String rating;
+              if (currentYearReleasesAnimeList.attributes.averageRating !=
+                  null) {
+                rating = currentYearReleasesAnimeList.attributes.averageRating!;
+              } else {
+                rating = "N/A";
+              }
+              return InkWell(
+                onTap: () {
+                  AutoRouter.of(context).push(
+                    AnimeDetailRoute(
+                        clickedUrl: currentYearReleasesAnimeList.links.self),
+                  );
+                },
+                child: AnimeCardForGeneral(
+                  imageUrl: currentYearReleasesAnimeList
+                      .attributes.posterImage.original,
+                  rating: rating,
+                  animeName:
+                      currentYearReleasesAnimeList.attributes.canonicalTitle,
+                  category: currentYearReleasesAnimeList
+                      .relationships.categories.links.related,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

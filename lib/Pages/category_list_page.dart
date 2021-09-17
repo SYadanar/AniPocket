@@ -19,8 +19,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
 
   @override
   void initState() {
-    // ApiService().getCategoryList(0).then((value) => print(value.toString()));
-
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
@@ -33,9 +31,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
       final response = await ApiService().getCategoryList(pageKey);
 
       final bool isLastPage = response.meta.count <= pageKey;
-      // print("count: ${response.meta.count}");
-      // print("Is last : $isLastPage");
-      // print("pageKey : $pageKey");
       if (isLastPage) {
         _pagingController.appendLastPage(response.data);
       } else {
@@ -56,45 +51,50 @@ class _CategoryListPageState extends State<CategoryListPage> {
       drawer: Drawer(
         child: DrawerList(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: PagedGridView<int, CategoryList>(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3,
-            mainAxisSpacing: 5,
-            crossAxisSpacing: 10,
-          ),
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<CategoryList>(
-              itemBuilder: (context, categoryList, index) {
+      body: PagedGridView<int, CategoryList>(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 2.8,
+        ),
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<CategoryList>(
+          itemBuilder: (context, categoryList, index) {
             return InkWell(
               onTap: () {
-                // print(
-                // "You tapped on ${categoryList.relationships.anime.links.related}");
                 AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
                     clickedUrl: categoryList.relationships.anime.links.related,
                     clickedGenreName: categoryList.attributes.title));
               },
-              child: Card(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10),
-                        topLeft: Radius.circular(10))),
-                child: Center(
-                  child: Text(
-                    categoryList.attributes.title,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(0, 0, 0, 0.65),
+                      bottomRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(4),
+                      bottomLeft: Radius.circular(4),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Center(
+                      child: Text(
+                        categoryList.attributes.title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          // color: Color.fromRGBO(0, 0, 0, 0.65),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
             );
-          }),
+          },
         ),
       ),
     );

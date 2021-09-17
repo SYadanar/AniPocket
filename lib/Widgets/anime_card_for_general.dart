@@ -19,15 +19,16 @@ class AnimeCardForGeneral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 10),
       child: Column(
         children: [
           Stack(
             children: [
+              // ------ Anime Poster Start ------
               Container(
                 width: 150,
                 height: 194,
                 decoration: BoxDecoration(
-                  //color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
@@ -47,6 +48,9 @@ class AnimeCardForGeneral extends StatelessWidget {
                   ),
                 ),
               ),
+              // ------ Anime Poster End ------
+
+              // ------ Anime Rating Start ------
               Positioned(
                 bottom: 0,
                 left: (150 - 65) / 2,
@@ -66,15 +70,13 @@ class AnimeCardForGeneral extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.stars_rounded,
-                        // color: Color.fromRGBO(255, 195, 0, 1),
                         size: 15,
                       ),
                       Text(
-                        // "83.1",
                         rating!,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(0, 0, 0, 0.65),
                         ),
                       ),
@@ -82,11 +84,13 @@ class AnimeCardForGeneral extends StatelessWidget {
                   ),
                 ),
               ),
+              // ------ Anime Rating End ------
             ],
           ),
           SizedBox(
-            height: 10,
+            height: 14,
           ),
+          // ------ Anime Category Start ------
           FutureBuilder<CategoryListResponse>(
             future: ApiService().getRelatedCategoryList(category, 1, 0),
             builder: (context, snapshot) {
@@ -94,7 +98,11 @@ class AnimeCardForGeneral extends StatelessWidget {
                 case ConnectionState.waiting:
                   return Wrap(
                     children: [
-                      const CircularProgressIndicator(),
+                      SizedBox(
+                        child: const CircularProgressIndicator(),
+                        width: 10,
+                        height: 10,
+                      ),
                     ],
                   );
                 default:
@@ -105,39 +113,36 @@ class AnimeCardForGeneral extends StatelessWidget {
                   } else {
                     return SizedBox(
                       width: 150,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: new NeverScrollableScrollPhysics(),
-                        itemCount: snapshot.data!.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            width: 150,
-                            child: Text(
-                              snapshot.data!.data[index].attributes.title,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(0, 0, 0, 0.65),
-                              ),
-                            ),
-                          );
-                        },
+                      child: Text(
+                        snapshot.data!.data.first.attributes.title,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(0, 0, 0, 0.65),
+                        ),
+                        overflow: TextOverflow.fade,
+                        maxLines: 2,
+                        softWrap: true,
                       ),
                     );
                   }
               }
             },
           ),
+          // ------ Anime Category End ------
+
+          // ------ Anime Name Start ------
           SizedBox(
             width: 150,
             child: Text(
               animeName,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 18),
               overflow: TextOverflow.fade,
               maxLines: 2,
               softWrap: true,
             ),
           )
+          // ------ Anime Name End ------
         ],
       ),
     );

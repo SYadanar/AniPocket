@@ -9,20 +9,22 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-          onPressed: () {
-            query = '';
-          },
-          icon: Icon(Icons.clear))
+        onPressed: () {
+          query = '';
+        },
+        icon: Icon(Icons.clear),
+      )
     ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(Icons.arrow_back));
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: Icon(Icons.arrow_back),
+    );
   }
 
   @override
@@ -33,11 +35,12 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return Center(
-                child: Wrap(
-              children: [
-                const CircularProgressIndicator(),
-              ],
-            ));
+              child: Wrap(
+                children: [
+                  const CircularProgressIndicator(),
+                ],
+              ),
+            );
           default:
             if (snapshot.hasError) {
               return Center(
@@ -45,23 +48,18 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
               );
             } else {
               return ListView.builder(
-                  itemCount: snapshot.data!.animeDataForName.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        snapshot.data!.animeDataForName[index].attributes
-                            .canonicalTitle,
-                        style: TextStyle(color: Colors.grey[800]),
-                      ),
-                      onTap: () {
-                        AutoRouter.of(context).push(
-                          AnimeDetailRoute(
-                              clickedUrl: snapshot
-                                  .data!.animeDataForName[index].links.self),
-                        );
-                      },
-                    );
-                  });
+                itemCount: snapshot.data!.animeDataForName.length,
+                itemBuilder: (context, index) {
+                  return _clickableSearchResultCards(
+                    context,
+                    snapshot.data!.animeDataForName[index].links.self,
+                    snapshot.data!.animeDataForName[index].attributes
+                        .posterImage.original,
+                    snapshot.data!.animeDataForName[index].attributes
+                        .canonicalTitle,
+                  );
+                },
+              );
             }
         }
       },
@@ -76,38 +74,80 @@ class ToDoSearchDelegate extends SearchDelegate<AnimeName> {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return Center(
-                child: Wrap(
-              children: [
-                const CircularProgressIndicator(),
-              ],
-            ));
+              child: Wrap(
+                children: [
+                  const CircularProgressIndicator(),
+                ],
+              ),
+            );
           default:
             if (snapshot.hasError) {
               return Center(
-                child: Text(snapshot.error.toString()),
+                child: Text(
+                  snapshot.error.toString(),
+                ),
               );
             } else {
               return ListView.builder(
-                  itemCount: snapshot.data!.animeDataForName.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        snapshot.data!.animeDataForName[index].attributes
-                            .canonicalTitle,
-                        style: TextStyle(color: Colors.grey[800]),
-                      ),
-                      onTap: () {
-                        AutoRouter.of(context).push(
-                          AnimeDetailRoute(
-                              clickedUrl: snapshot
-                                  .data!.animeDataForName[index].links.self),
-                        );
-                      },
-                    );
-                  });
+                itemCount: snapshot.data!.animeDataForName.length,
+                itemBuilder: (context, index) {
+                  return _clickableSearchResultCards(
+                    context,
+                    snapshot.data!.animeDataForName[index].links.self,
+                    snapshot.data!.animeDataForName[index].attributes
+                        .posterImage.original,
+                    snapshot.data!.animeDataForName[index].attributes
+                        .canonicalTitle,
+                  );
+                },
+              );
             }
         }
       },
+    );
+  }
+
+  InkWell _clickableSearchResultCards(BuildContext context, String clickedUrl,
+      String posterImgUrl, String animeName) {
+    return InkWell(
+      onTap: () {
+        AutoRouter.of(context).push(
+          AnimeDetailRoute(clickedUrl: clickedUrl),
+        );
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+          child: Row(
+            children: [
+              Container(
+                height: 80,
+                width: 60,
+                child: Image.network(
+                  posterImgUrl,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Image.asset(
+                      "assets/images/no_img_available.png",
+                    );
+                  },
+                  fit: BoxFit.fill,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 119,
+                child: Text(
+                  animeName,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

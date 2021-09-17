@@ -7,7 +7,6 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../Pages/category_list_page.dart' as _i4;
 import '../Pages/pages.dart' as _i3;
 
 class MyAppRouter extends _i1.RootStackRouter {
@@ -34,10 +33,19 @@ class MyAppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<WelcomeRouteArgs>();
           return _i3.WelcomePage(key: args.key, title: args.title);
         }),
-    CharactersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    CharacterListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i3.CharactersPage();
+        builder: (data) {
+          final args = data.argsAs<CharacterListRouteArgs>();
+          return _i3.CharacterListPage(
+              key: args.key, animeId: args.animeId, animeName: args.animeName);
+        }),
+    CharacterDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<CharacterDetailRouteArgs>();
+          return _i3.CharacterDetailPage(
+              key: args.key, characterId: args.characterId);
         }),
     FavouriteRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -72,7 +80,7 @@ class MyAppRouter extends _i1.RootStackRouter {
     CategoryListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.CategoryListPage();
+          return const _i3.CategoryListPage();
         }),
     CategoryRelatedAnimeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -90,7 +98,9 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
-        _i1.RouteConfig(CharactersRoute.name, path: '/characters-page'),
+        _i1.RouteConfig(CharacterListRoute.name, path: '/character-list-page'),
+        _i1.RouteConfig(CharacterDetailRoute.name,
+            path: '/character-detail-page'),
         _i1.RouteConfig(FavouriteRoute.name, path: '/favourite-page'),
         _i1.RouteConfig(PasswordRoute.name, path: '/password-page'),
         _i1.RouteConfig(ReleasesRoute.name, path: '/releases-page'),
@@ -143,10 +153,43 @@ class WelcomeRouteArgs {
   final String title;
 }
 
-class CharactersRoute extends _i1.PageRouteInfo {
-  const CharactersRoute() : super(name, path: '/characters-page');
+class CharacterListRoute extends _i1.PageRouteInfo<CharacterListRouteArgs> {
+  CharacterListRoute(
+      {_i2.Key? key, required String animeId, required String animeName})
+      : super(name,
+            path: '/character-list-page',
+            args: CharacterListRouteArgs(
+                key: key, animeId: animeId, animeName: animeName));
 
-  static const String name = 'CharactersRoute';
+  static const String name = 'CharacterListRoute';
+}
+
+class CharacterListRouteArgs {
+  const CharacterListRouteArgs(
+      {this.key, required this.animeId, required this.animeName});
+
+  final _i2.Key? key;
+
+  final String animeId;
+
+  final String animeName;
+}
+
+class CharacterDetailRoute extends _i1.PageRouteInfo<CharacterDetailRouteArgs> {
+  CharacterDetailRoute({_i2.Key? key, required String characterId})
+      : super(name,
+            path: '/character-detail-page',
+            args: CharacterDetailRouteArgs(key: key, characterId: characterId));
+
+  static const String name = 'CharacterDetailRoute';
+}
+
+class CharacterDetailRouteArgs {
+  const CharacterDetailRouteArgs({this.key, required this.characterId});
+
+  final _i2.Key? key;
+
+  final String characterId;
 }
 
 class FavouriteRoute extends _i1.PageRouteInfo {
