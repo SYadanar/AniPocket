@@ -2,7 +2,6 @@ import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
-import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -73,9 +72,7 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               height: 35,
               alignment: Alignment.centerLeft,
-              // color: Colors.grey[300],
               color: Colors.white,
-              // color: mySecondaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Recommended",
@@ -85,7 +82,6 @@ class _HomePageState extends State<HomePage> {
             content: Container(
               width: double.infinity,
               height: 300,
-              // margin: const EdgeInsets.only(top: 10),
               child: Center(
                 child: FutureBuilder<AnimeResponse>(
                   future: ApiService().getAnime(),
@@ -157,9 +153,7 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               height: 35,
               alignment: Alignment.centerLeft,
-              // color: Colors.grey[300],
               color: Colors.white,
-              // color: mySecondaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "All Anime",
@@ -169,7 +163,6 @@ class _HomePageState extends State<HomePage> {
             content: Container(
               height: 700,
               width: double.infinity,
-              // margin: const EdgeInsets.only(top: 10),
               child: PagedGridView<int, AllAnimeData>(
                 scrollDirection: Axis.vertical,
                 pagingController: _pagingController,

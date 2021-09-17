@@ -34,6 +34,7 @@ class DrawerList extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 30,
                       color: myPrimaryColor,
+                      letterSpacing: 2,
                     ),
                   ),
                   Text(
@@ -42,6 +43,7 @@ class DrawerList extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey[700],
+                      letterSpacing: 1.25,
                     ),
                   )
                 ],
