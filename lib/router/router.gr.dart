@@ -136,7 +136,7 @@ class AnimeDetailRouteArgs {
   final String clickedUrl;
 }
 
-class WelcomeRoute ex{String title}tends _i1.PageRouteInfo<WelcomeRouteArgs> {
+class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({_i2.Key? key, required String title})
       : super(name,
             path: '/welcome-page',
