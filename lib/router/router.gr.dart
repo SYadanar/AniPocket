@@ -30,8 +30,9 @@ class MyAppRouter extends _i1.RootStackRouter {
         }),
     WelcomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i3.WelcomePage();
+        builder: (data) {
+          final args = data.argsAs<WelcomeRouteArgs>();
+          return _i3.WelcomePage(key: args.key, title: args.title);
         }),
     CharactersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -125,10 +126,21 @@ class AnimeDetailRouteArgs {
   final String clickedUrl;
 }
 
-class WelcomeRoute extends _i1.PageRouteInfo {
-  const WelcomeRoute() : super(name, path: '/welcome-page');
+class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
+  WelcomeRoute({_i2.Key? key, required String title})
+      : super(name,
+            path: '/welcome-page',
+            args: WelcomeRouteArgs(key: key, title: title));
 
   static const String name = 'WelcomeRoute';
+}
+
+class WelcomeRouteArgs {
+  const WelcomeRouteArgs({this.key, required this.title});
+
+  final _i2.Key? key;
+
+  final String title;
 }
 
 class CharactersRoute extends _i1.PageRouteInfo {

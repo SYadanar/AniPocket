@@ -2,6 +2,7 @@ import 'package:anime_app/Widgets/category_list_of_anime.dart';
 import 'package:anime_app/Widgets/youtube_player.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:anime_app/Widgets/For_Storage/on_tap.dart';
 
 class AnimeDetail extends StatefulWidget {
   final String coverImageUrl;
@@ -83,8 +84,8 @@ class _AnimeDetailState extends State<AnimeDetail> {
                         left: 10,
                         child: InkWell(
                           onTap: () {
-                          AutoRouter.of(context).pop();
-                        },
+                            AutoRouter.of(context).pop();
+                          },
                           child: Icon(
                             Icons.circle,
                             color: Color.fromRGBO(255, 255, 255, 0.6),
@@ -132,12 +133,9 @@ class _AnimeDetailState extends State<AnimeDetail> {
                               ),
                             ),
                             Container(
-                              child: Icon(
-                                Icons.favorite_border_outlined,
-                                color: Colors.red,
-                                size: 24,
-                              ),
-                            )
+                              width: 24,
+                              child: OnTapMain(),
+                            ),
                           ],
                         ),
                       ),

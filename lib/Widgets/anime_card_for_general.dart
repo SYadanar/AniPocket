@@ -27,7 +27,7 @@ class AnimeCardForGeneral extends StatelessWidget {
                 width: 150,
                 height: 194,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  //color: Colors.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.25),
