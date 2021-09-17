@@ -2,6 +2,7 @@ import 'package:anime_app/Models/For_Anime_Card/all_anime_response.dart';
 import 'package:anime_app/Models/For_Anime_Card/anime_response.dart';
 import 'package:anime_app/Widgets/anime_card_for_general.dart';
 import 'package:anime_app/Widgets/drawer_list.dart';
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerLeft,
               // color: Colors.grey[300],
               color: Colors.white,
+              // color: mySecondaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Recommended",
@@ -157,6 +159,7 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerLeft,
               // color: Colors.grey[300],
               color: Colors.white,
+              // color: mySecondaryColor,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "All Anime",

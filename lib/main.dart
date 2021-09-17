@@ -1,3 +1,4 @@
+import 'package:anime_app/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
           ),
           bodyText1: GoogleFonts.openSans(textStyle: textTheme.bodyText1),
         ),
+
+        primaryColor: myPrimaryColor,
       ),
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),

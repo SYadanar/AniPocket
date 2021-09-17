@@ -1,3 +1,4 @@
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,40 @@ class DrawerList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        // DrawerHeader(child: Text("App Name")),
+        // DrawerHeader(
+        //   child: Image.asset("assets/images/LogoSample.png"),
+        // ),
         Container(
           height: 100,
-          child: ListTile(
-            title: Text("App Name"),
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/images/logo_2.png",
+                fit: BoxFit.scaleDown,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "AniPocket",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: myPrimaryColor,
+                    ),
+                  ),
+                  Text(
+                    "Anytime, Anywhere",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[700],
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         ),
         Container(
@@ -33,8 +63,19 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            leading: Icon(Icons.home),
-            title: Text("HOME", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            leading: Icon(
+              Icons.home,
+              color: myPrimaryColor,
+            ),
+            title: Text(
+              "HOME",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: myPrimaryColor,
+                letterSpacing: 1.5,
+              ),
+            ),
             onTap: () {
               AutoRouter.of(context).push(HomeRoute());
             },
@@ -54,8 +95,19 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            leading: Icon(Icons.category),
-            title: Text("CATEGORY", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            leading: Icon(
+              Icons.category,
+              color: myPrimaryColor,
+            ),
+            title: Text(
+              "CATEGORY",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.5,
+                color: myPrimaryColor,
+              ),
+            ),
             onTap: () {
               AutoRouter.of(context).push(CategoryListRoute());
             },
@@ -75,8 +127,19 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            leading: Icon(Icons.calendar_today),
-            title: Text("$currentYear RELEASES", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            leading: Icon(
+              Icons.calendar_today,
+              color: myPrimaryColor,
+            ),
+            title: Text(
+              "$currentYear RELEASES",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: myPrimaryColor,
+                letterSpacing: 1.5,
+              ),
+            ),
             onTap: () {
               AutoRouter.of(context).push(ReleasesRoute());
             },
@@ -96,8 +159,19 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("FAVOURITES", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            leading: Icon(
+              Icons.favorite,
+              color: myPrimaryColor,
+            ),
+            title: Text(
+              "FAVOURITES",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: myPrimaryColor,
+                letterSpacing: 1.5,
+              ),
+            ),
           ),
         ),
       ],
