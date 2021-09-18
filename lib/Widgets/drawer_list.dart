@@ -65,14 +65,6 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-<<<<<<< HEAD
-            leading: Icon(Icons.home),
-            title: Text("HOME",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1.5)),
-=======
             leading: Icon(
               Icons.home,
               color: myPrimaryColor,
@@ -86,7 +78,6 @@ class DrawerList extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
->>>>>>> 4a31b134248e1f94801321de8c81d2a23ffb6294
             onTap: () {
               AutoRouter.of(context).push(HomeRoute());
             },
@@ -106,12 +97,21 @@ class DrawerList extends StatelessWidget {
             ],
           ),
           child: ListTile(
-            title: Text("CATEGORY",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1.5)),
+            leading: Icon(
+              Icons.category,
+              color: myPrimaryColor,
+            ),
+            title: Text(
+              "CATEGORY",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.5,
+                color: myPrimaryColor,
+              ),
+            ),
             onTap: () {
+              AutoRouter.of(context).push(CategoryListRoute());
             },
           ),
         ),
@@ -125,17 +125,10 @@ class DrawerList extends StatelessWidget {
                 spreadRadius: 0,
                 blurRadius: 4,
                 offset: Offset(0, 1), // changes position of shadow
+              ),
             ],
           ),
           child: ListTile(
-<<<<<<< HEAD
-            leading: Icon(Icons.calendar_today),
-            title: Text("$currentYear RELEASES",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1.5)),
-=======
             leading: Icon(
               Icons.calendar_today,
               color: myPrimaryColor,
@@ -149,7 +142,6 @@ class DrawerList extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
->>>>>>> 4a31b134248e1f94801321de8c81d2a23ffb6294
             onTap: () {
               AutoRouter.of(context).push(ReleasesRoute());
             },
@@ -184,6 +176,27 @@ class DrawerList extends StatelessWidget {
             ),
             onTap: () {
               AutoRouter.of(context).push(FavouriteRoute());
+            },
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                spreadRadius: 0,
+                blurRadius: 4,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ],
+          ),
+          child: ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Testing"),
+            onTap: () {
+              AutoRouter.of(context).push(WelcomeRoute(title: ''));
             },
           ),
         ),
