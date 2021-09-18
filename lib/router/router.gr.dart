@@ -15,6 +15,11 @@ class MyAppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
+    SplashScreenRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i3.SplashScreenPage();
+        }),
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -95,7 +100,8 @@ class MyAppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeRoute.name, path: '/'),
+        _i1.RouteConfig(SplashScreenRoute.name, path: '/'),
+        _i1.RouteConfig(HomeRoute.name, path: '/home-page'),
         _i1.RouteConfig(AnimeDetailRoute.name, path: '/anime-detail-page'),
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(CharacterListRoute.name, path: '/character-list-page'),
@@ -113,8 +119,14 @@ class MyAppRouter extends _i1.RootStackRouter {
       ];
 }
 
+class SplashScreenRoute extends _i1.PageRouteInfo {
+  const SplashScreenRoute() : super(name, path: '/');
+
+  static const String name = 'SplashScreenRoute';
+}
+
 class HomeRoute extends _i1.PageRouteInfo {
-  const HomeRoute() : super(name, path: '/');
+  const HomeRoute() : super(name, path: '/home-page');
 
   static const String name = 'HomeRoute';
 }

@@ -12,3 +12,4 @@ export 'category_related_anime_page.dart';
 export 'testing_page.dart';
 export 'character_list_page.dart';
 export 'category_list_page.dart';
+export 'splash_screen.dart';

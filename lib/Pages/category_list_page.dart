@@ -46,55 +46,60 @@ class _CategoryListPageState extends State<CategoryListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Genres'),
+        title: Text('Category'),
       ),
       drawer: Drawer(
         child: DrawerList(),
       ),
-      body: PagedGridView<int, CategoryList>(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 2.8,
-        ),
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<CategoryList>(
-          itemBuilder: (context, categoryList, index) {
-            return InkWell(
-              onTap: () {
-                AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
-                    clickedUrl: categoryList.relationships.anime.links.related,
-                    clickedGenreName: categoryList.attributes.title));
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                child: Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(15),
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(4),
-                      bottomLeft: Radius.circular(4),
+      body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        child: PagedGridView<int, CategoryList>(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 2.8,
+          ),
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<CategoryList>(
+            itemBuilder: (context, categoryList, index) {
+              return InkWell(
+                onTap: () {
+                  AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
+                      clickedUrl:
+                          categoryList.relationships.anime.links.related,
+                      clickedGenreName: categoryList.attributes.title));
+                },
+                child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(15),
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(4),
+                        bottomLeft: Radius.circular(4),
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Center(
-                      child: Text(
-                        categoryList.attributes.title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          // color: Color.fromRGBO(0, 0, 0, 0.65),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Center(
+                        child: Text(
+                          categoryList.attributes.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            // color: Color.fromRGBO(0, 0, 0, 0.65),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

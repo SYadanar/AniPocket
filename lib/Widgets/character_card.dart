@@ -1,3 +1,4 @@
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,8 @@ class CharacterCard extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     border: Border(
-                      top: BorderSide(width: 8, color: Colors.green),
-                      bottom: BorderSide(width: 8, color: Colors.green),
+                      top: BorderSide(width: 8, color: mySecondaryColor),
+                      bottom: BorderSide(width: 8, color: mySecondaryColor),
                     ),
                     color: Colors.white,
                   ),

@@ -72,7 +72,6 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               height: 35,
               alignment: Alignment.centerLeft,
-              // color: Colors.grey[300],
               color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -83,7 +82,6 @@ class _HomePageState extends State<HomePage> {
             content: Container(
               width: double.infinity,
               height: 300,
-              // margin: const EdgeInsets.only(top: 10),
               child: Center(
                 child: FutureBuilder<AnimeResponse>(
                   future: ApiService().getAnime(),
@@ -155,7 +153,6 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               height: 35,
               alignment: Alignment.centerLeft,
-              // color: Colors.grey[300],
               color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -166,7 +163,6 @@ class _HomePageState extends State<HomePage> {
             content: Container(
               height: 700,
               width: double.infinity,
-              // margin: const EdgeInsets.only(top: 10),
               child: PagedGridView<int, AllAnimeData>(
                 scrollDirection: Axis.vertical,
                 pagingController: _pagingController,

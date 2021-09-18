@@ -1,4 +1,5 @@
 import 'package:anime_app/Models/For_Category/category_list_response.dart';
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:auto_route/auto_route.dart';
@@ -47,7 +48,7 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 40,
+      height: 50,
       child: PagedListView.separated(
         scrollDirection: Axis.horizontal,
         separatorBuilder: (BuildContext context, int index) {
@@ -67,8 +68,11 @@ class _CategoryListOfAnimeState extends State<CategoryListOfAnime> {
             },
             child: Card(
               elevation: 4,
+              color: mySecondaryColor,
+              margin: const EdgeInsets.symmetric(vertical: 8),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50)),
+                borderRadius: BorderRadius.circular(50),
+              ),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(

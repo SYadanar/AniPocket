@@ -4,6 +4,7 @@ import 'package:anime_app/Widgets/anime_detail_more_info.dart';
 import 'package:anime_app/Widgets/category_list_of_anime.dart';
 import 'package:anime_app/Widgets/character_card.dart';
 import 'package:anime_app/Widgets/youtube_player.dart';
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:anime_app/temp_data.dart';
@@ -217,8 +218,9 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                 Text(
                                   widget.rating,
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
@@ -227,15 +229,9 @@ class _AnimeDetailState extends State<AnimeDetail> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
                     // ------ Category List Start ------
                     CategoryListOfAnime(url: widget.categoryUrl),
                     // ------ Category List End ------
-                    SizedBox(
-                      height: 10,
-                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                       child: Column(
@@ -332,7 +328,10 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                       ),
                                     );
                                   },
-                                  child: Text("See more"),
+                                  child: Text(
+                                    "See more",
+                                    style: TextStyle(color: myPrimaryColor),
+                                  ),
                                 )
                               ],
                             ),
@@ -341,7 +340,8 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       ),
                     ),
                     Container(
-                      height: 230,
+                      height: 250,
+                      margin: const EdgeInsets.only(bottom: 10),
                       child: PagedListView.separated(
                         scrollDirection: Axis.horizontal,
                         separatorBuilder: (BuildContext context, int index) {

@@ -1,3 +1,4 @@
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/temp_data.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,7 @@ class CharacterDetailWidget extends StatelessWidget {
                 child: Center(
                   child: CircleAvatar(
                     radius: (MediaQuery.of(context).size.width / 2) - 60,
-                    backgroundColor: Color.fromRGBO(7, 59, 58, 1),
+                    backgroundColor: mySecondaryColor,
                     child: CircleAvatar(
                       radius: (MediaQuery.of(context).size.width / 2) - 68,
                       backgroundImage: NetworkImage(
@@ -180,7 +181,8 @@ class CharacterDetailWidget extends StatelessWidget {
                       'p': Style(
                         lineHeight: LineHeight(1.5),
                         textAlign: TextAlign.justify,
-                        fontFamily: Theme.of(context).textTheme.bodyText1!.fontFamily,
+                        fontFamily:
+                            Theme.of(context).textTheme.bodyText1!.fontFamily,
                       ),
                     },
                   ),

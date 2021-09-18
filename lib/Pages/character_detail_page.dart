@@ -11,42 +11,44 @@ class CharacterDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<CharacterDetailResponse>(
-        future: ApiService().getCharacterDetail(characterId),
-        builder: (context, snapshot) {
-          String characterImg = "N/A";
-          String engName = "N/A";
-          String jpName = "N/A";
-
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(
-                child: const CircularProgressIndicator(),
-              );
-            default:
-              if (snapshot.hasError) {
+      body: SafeArea(
+        child: FutureBuilder<CharacterDetailResponse>(
+          future: ApiService().getCharacterDetail(characterId),
+          builder: (context, snapshot) {
+            String characterImg = "N/A";
+            String engName = "N/A";
+            String jpName = "N/A";
+      
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
                 return Center(
-                  child: Text(snapshot.error.toString()),
+                  child: const CircularProgressIndicator(),
                 );
-              } else {
-                if (snapshot.data!.data.attributes.image != null) {
-                  characterImg = snapshot.data!.data.attributes.image!.original;
+              default:
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                } else {
+                  if (snapshot.data!.data.attributes.image != null) {
+                    characterImg = snapshot.data!.data.attributes.image!.original;
+                  }
+                  if (snapshot.data!.data.attributes.names.en != null) {
+                    engName = snapshot.data!.data.attributes.names.en!;
+                  }
+                  if (snapshot.data!.data.attributes.names.jp != null) {
+                    jpName = snapshot.data!.data.attributes.names.jp!;
+                  }
+                  return CharacterDetailWidget(
+                      characterImgUrl: characterImg,
+                      canonicalName: snapshot.data!.data.attributes.canonicalName,
+                      englishName: engName,
+                      japaneseName: jpName,
+                      aboutCharacter: snapshot.data!.data.attributes.description);
                 }
-                if (snapshot.data!.data.attributes.names.en != null) {
-                  engName = snapshot.data!.data.attributes.names.en!;
-                }
-                if (snapshot.data!.data.attributes.names.jp != null) {
-                  jpName = snapshot.data!.data.attributes.names.jp!;
-                }
-                return CharacterDetailWidget(
-                    characterImgUrl: characterImg,
-                    canonicalName: snapshot.data!.data.attributes.canonicalName,
-                    englishName: engName,
-                    japaneseName: jpName,
-                    aboutCharacter: snapshot.data!.data.attributes.description);
-              }
-          }
-        },
+            }
+          },
+        ),
       ),
     );
   }
