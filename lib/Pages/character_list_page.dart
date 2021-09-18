@@ -56,6 +56,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
           mainAxisSpacing: 15,
           crossAxisSpacing: 5,
         ),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<Data>(
           itemBuilder: (context, character, index) {

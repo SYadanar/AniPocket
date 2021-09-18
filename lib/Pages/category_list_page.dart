@@ -52,7 +52,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
         child: DrawerList(),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: PagedGridView<int, CategoryList>(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -64,11 +64,13 @@ class _CategoryListPageState extends State<CategoryListPage> {
               return InkWell(
                 onTap: () {
                   AutoRouter.of(context).push(CategoryRelatedAnimeRoute(
-                      clickedUrl: categoryList.relationships.anime.links.related,
+                      clickedUrl:
+                          categoryList.relationships.anime.links.related,
                       clickedGenreName: categoryList.attributes.title));
                 },
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                   child: Card(
                     elevation: 10,
                     shape: RoundedRectangleBorder(
