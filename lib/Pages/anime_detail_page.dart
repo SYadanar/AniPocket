@@ -105,6 +105,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                       episodeCount: episodeCount,
                       episodeLength: episodeLength,
                       youtubeVideoId: youtubeVideoId,
+                      self: snapshot.data!.data.links.self,
                     );
                   }
               }

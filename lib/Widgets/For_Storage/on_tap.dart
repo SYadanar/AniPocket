@@ -1,5 +1,8 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+late Box animeBox;
 class OnTapMain extends StatefulWidget {
   const OnTapMain({Key? key}) : super(key: key);
 
@@ -7,20 +10,16 @@ class OnTapMain extends StatefulWidget {
   _OnTapMainState createState() => _OnTapMainState();
 }
 
-class _OnTapMainState extends State<OnTapMain> {
-  void onTapFuntion() {
+class _OnTapMainState extends State<OnTapMain> {*/
+  /*void onTapFuntion() {
     setState(() {
       OnTap() == OnTapTwo();
     });
-  }
+  }*/
 
-  @override
+  /*@override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          onTapFuntion();
-        },
-        child: OnTap());
+    return  OnTap();
   }
 }
 
@@ -35,11 +34,13 @@ class _OnTapState extends State<OnTap> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {},
+        onPressed: () {
+          
+        },
         icon: Icon(
           Icons.favorite_border_outlined,
           color: Colors.red,
-          size: 24,
+          size: 28,
         ));
   }
 }
@@ -59,7 +60,7 @@ class _OnTapTwoState extends State<OnTapTwo> {
         icon: Icon(
           Icons.favorite,
           color: Colors.red,
-          size: 24,
+          size: 28,
         ));
   }
-}
+}*/

@@ -11,6 +11,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+//import 'package:path_provider/path_provider.dart';
+//import 'package:anime_app/Widgets/For_Storage/on_tap.dart';
+import 'package:anime_app/main.dart';
+late Box animeBox;
 
 class AnimeDetail extends StatefulWidget {
   final String animeId,
@@ -28,7 +34,8 @@ class AnimeDetail extends StatefulWidget {
       status,
       episodeCount,
       episodeLength,
-      youtubeVideoId;
+      youtubeVideoId,
+      self;
   const AnimeDetail({
     Key? key,
     required this.animeId,
@@ -47,6 +54,7 @@ class AnimeDetail extends StatefulWidget {
     required this.episodeCount,
     required this.episodeLength,
     required this.youtubeVideoId,
+    required this.self,
   }) : super(key: key);
 
   @override
@@ -54,6 +62,7 @@ class AnimeDetail extends StatefulWidget {
 }
 
 class _AnimeDetailState extends State<AnimeDetail> {
+
   final PagingController<int, Data> _pagingController =
       PagingController(firstPageKey: 0);
 
@@ -68,6 +77,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
       _fetchPage(pageKey);
     });
     super.initState();
+    animeBox = Hive.box(animeName);
   }
 
   Future<void> _fetchPage(int pageKey) async {
@@ -168,11 +178,19 @@ class _AnimeDetailState extends State<AnimeDetail> {
                                   ),
                                 ),
                                 Container(
-                                  child: Icon(
-                                    Icons.favorite_border_outlined,
-                                    color: Colors.red,
-                                    size: 28,
-                                  ),
+                                  width: 28,
+                                  child: IconButton(
+                                    iconSize: 28,
+                                      onPressed: () {
+                                        final value = widget.self;
+                                        final key = widget.animeTitle;
+                                        animeBox.put(key, value);
+                                      },
+                                      icon: Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.red,
+                                        size: 28,
+                                      )),
                                 )
                               ],
                             ),

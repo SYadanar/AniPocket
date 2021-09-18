@@ -4,12 +4,16 @@ import 'package:anime_app/router/router.gr.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+//late Box animeBox;
+String animeName = "anime";
+//late Box friendsBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory document = await getApplicationDocumentsDirectory();
   Hive.init(document.path);
-  await Hive.openBox<String>("friends");
+  await Hive.openBox(animeName);
   runApp(MyApp());
 }
 
@@ -38,3 +42,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

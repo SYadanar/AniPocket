@@ -15,6 +15,10 @@ class ApiService {
   final String route =
       "https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&page%5Boffset%5D=10";
 
+
+//for favourite
+
+
 //for search bar
   Future<AnimeName> getname({String? query}) async {
     try {

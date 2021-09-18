@@ -34,7 +34,11 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.home),
-            title: Text("HOME", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            title: Text("HOME",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1.5)),
             onTap: () {
               AutoRouter.of(context).push(HomeRoute());
             },
@@ -55,7 +59,11 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.category),
-            title: Text("CATEGORY", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            title: Text("CATEGORY",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1.5)),
             onTap: () {
               AutoRouter.of(context).push(CategoryListRoute());
             },
@@ -76,7 +84,11 @@ class DrawerList extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(Icons.calendar_today),
-            title: Text("$currentYear RELEASES", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing:  1.5)),
+            title: Text("$currentYear RELEASES",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1.5)),
             onTap: () {
               AutoRouter.of(context).push(ReleasesRoute());
             },
@@ -100,27 +112,6 @@ class DrawerList extends StatelessWidget {
             title: Text("FAVOURITES"),
             onTap: () {
               AutoRouter.of(context).push(FavouriteRoute());
-            },
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                spreadRadius: 0,
-                blurRadius: 4,
-                offset: Offset(0, 1), // changes position of shadow
-              ),
-            ],
-          ),
-          child: ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Testing"),
-            onTap: () {
-              AutoRouter.of(context).push(WelcomeRoute(title: ''));
             },
           ),
         ),
