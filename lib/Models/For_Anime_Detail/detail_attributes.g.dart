@@ -8,7 +8,7 @@ part of 'detail_attributes.dart';
 
 Attributes _$AttributesFromJson(Map<String, dynamic> json) {
   return Attributes(
-    json['description'] as String,
+    json['description'] as String?,
     json['canonicalTitle'] as String?,
     json['averageRating'] as String?,
     json['startDate'] as String?,

@@ -111,20 +111,26 @@ class AnimeCardForGeneral extends StatelessWidget {
                       child: Text(snapshot.error.toString()),
                     );
                   } else {
-                    return SizedBox(
-                      width: 150,
-                      child: Text(
-                        snapshot.data!.data.first.attributes.title,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(0, 0, 0, 0.65),
+                    if (snapshot.data!.meta.count != 0) {
+                      return SizedBox(
+                        width: 150,
+                        child: Text(
+                          snapshot.data!.data.first.attributes.title,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(0, 0, 0, 0.65),
+                          ),
+                          overflow: TextOverflow.fade,
+                          maxLines: 2,
+                          softWrap: true,
                         ),
-                        overflow: TextOverflow.fade,
-                        maxLines: 2,
-                        softWrap: true,
-                      ),
-                    );
+                      );
+                    } else {
+                      return SizedBox(
+                        height: 0,
+                      );
+                    }
                   }
               }
             },

@@ -109,20 +109,26 @@ class _AnimeCardForGenresState extends State<AnimeCardForGenres> {
                               child: Text(snapshot.error.toString()),
                             );
                           } else {
-                            return SizedBox(
-                              child: Text(
-                                snapshot.data!.data.first.attributes.title,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromRGBO(0, 0, 0, 0.65),
+                            if (snapshot.data!.meta.count != 0) {
+                              return SizedBox(
+                                child: Text(
+                                  snapshot.data!.data.first.attributes.title,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromRGBO(0, 0, 0, 0.65),
+                                  ),
+                                  overflow: TextOverflow.fade,
+                                  maxLines: 2,
+                                  softWrap: true,
                                 ),
-                                overflow: TextOverflow.fade,
-                                maxLines: 2,
-                                softWrap: true,
-                              ),
-                              width: MediaQuery.of(context).size.width - 178,
-                            );
+                                width: MediaQuery.of(context).size.width - 178,
+                              );
+                            } else {
+                              return SizedBox(
+                                height: 0,
+                              );
+                            }
                           }
                       }
                     },

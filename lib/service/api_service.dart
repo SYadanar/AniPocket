@@ -15,15 +15,13 @@ class ApiService {
   final String route =
       "https://kitsu.io/api/edge/anime?page%5Blimit%5D=10&page%5Boffset%5D=10";
 
-
 //for favourite
-
 
 //for search bar
   Future<AnimeName> getname({String? query}) async {
     try {
-      final Response response =
-          await Dio().get('https://kitsu.io/api/edge/anime?filter[text]=$query');
+      final Response response = await Dio()
+          .get('https://kitsu.io/api/edge/anime?filter[text]=$query&page[limit]=20');
       //print("The response is $response");
       //print("The data is ${response.data}");
 

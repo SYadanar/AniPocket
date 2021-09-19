@@ -70,12 +70,10 @@ class _ReleasesPageState extends State<ReleasesPage> {
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<RelatedAnimeList>(
             itemBuilder: (context, currentYearReleasesAnimeList, index) {
-              String rating;
+              String rating = "N/A";
               if (currentYearReleasesAnimeList.attributes.averageRating !=
                   null) {
                 rating = currentYearReleasesAnimeList.attributes.averageRating!;
-              } else {
-                rating = "N/A";
               }
               return InkWell(
                 onTap: () {

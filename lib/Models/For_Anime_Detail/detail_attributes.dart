@@ -4,7 +4,7 @@ part 'detail_attributes.g.dart';
 
 @JsonSerializable()
 class Attributes {
-  final String description;
+  final String? description;
   final String? canonicalTitle;
   final String? averageRating;
   final String? startDate;

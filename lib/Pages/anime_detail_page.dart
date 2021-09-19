@@ -23,6 +23,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
             builder: (context, snapshot) {
               String coverImg = "N/A";
               String rating = "N/A";
+              String description = "N/A";
               String startDate = "N/A";
               String endDate = "N/A";
               String nextRelease = "N/A";
@@ -49,6 +50,8 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                     if (snapshot.data!.data.attributes.coverImage != null)
                       coverImg =
                           snapshot.data!.data.attributes.coverImage!.original;
+                    if (snapshot.data!.data.attributes.description != null)
+                      description = snapshot.data!.data.attributes.description!;
                     if (snapshot.data!.data.attributes.averageRating != null)
                       rating = snapshot.data!.data.attributes.averageRating!;
                     if (snapshot.data!.data.attributes.startDate != null)
@@ -91,7 +94,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                       animeId: snapshot.data!.data.id,
                       coverImageUrl: coverImg,
                       rating: rating,
-                      overview: snapshot.data!.data.attributes.description,
+                      overview: description,
                       animeTitle: title,
                       categoryUrl: snapshot
                           .data!.data.relationships.categories.links.related,

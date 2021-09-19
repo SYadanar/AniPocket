@@ -289,18 +289,19 @@ class _AnimeDetailState extends State<AnimeDetail> {
                             height: 8,
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            width: double.infinity,
-                            child: Text(
-                              widget.overview,
-                              // style: TextStyle(height: 1.5, fontSize: 16),
-                              style: GoogleFonts.openSans(
-                                height: 1.5,
-                                fontSize: 14,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
-                          ),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              width: double.infinity,
+                              child: Text(
+                                widget.overview != "N/A"
+                                    ? widget.overview
+                                    : "WE ARE SORRY !\nThare is no Overview for this Anime yet!",
+                                style: GoogleFonts.openSans(
+                                  height: 1.5,
+                                  fontSize: 14,
+                                ),
+                                textAlign: widget.overview != "N/A" ? TextAlign.justify : TextAlign.center,
+                              )),
                           // ------ Anime Overview End ------
                           SizedBox(
                             height: 20,
