@@ -46,7 +46,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Category'),
+        title: Text('Categories'),
       ),
       drawer: Drawer(
         child: DrawerList(),

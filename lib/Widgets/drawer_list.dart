@@ -102,7 +102,7 @@ class DrawerList extends StatelessWidget {
               color: myPrimaryColor,
             ),
             title: Text(
-              "CATEGORY",
+              "CATEGORIES",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -176,27 +176,6 @@ class DrawerList extends StatelessWidget {
             ),
             onTap: () {
               AutoRouter.of(context).push(FavouriteRoute());
-            },
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                spreadRadius: 0,
-                blurRadius: 4,
-                offset: Offset(0, 1), // changes position of shadow
-              ),
-            ],
-          ),
-          child: ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Testing"),
-            onTap: () {
-              AutoRouter.of(context).push(WelcomeRoute(title: ''));
             },
           ),
         ),
