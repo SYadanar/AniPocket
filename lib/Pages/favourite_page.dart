@@ -1,4 +1,6 @@
 import 'package:anime_app/Models/For_Anime_Detail/detail_response.dart';
+import 'package:anime_app/Models/For_Category/category_list_response.dart';
+import 'package:anime_app/colors.dart';
 import 'package:anime_app/router/router.gr.dart';
 import 'package:anime_app/service/api_service.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:anime_app/Widgets/anime_detail.dart';
+import 'package:anime_app/main.dart';
 
 class FavouritePage extends StatefulWidget {
   const FavouritePage({
@@ -17,6 +20,12 @@ class FavouritePage extends StatefulWidget {
 }
 
 class _FavouritePageState extends State<FavouritePage> {
+  @override
+  void initState() {
+    super.initState();
+    animeBox = Hive.box(animeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,23 +86,42 @@ class _FavouritePageState extends State<FavouritePage> {
                                         context: context,
                                         builder: (_) {
                                           return Dialog(
-                                            child: Container(
-                                              height: 160,
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                      'Are you want to unsave ${title}'),
-                                                  SizedBox(
-                                                    height: 12,
-                                                  ),
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        animeBox.delete(key);
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: Text('Yes'))
-                                                ],
-                                              ),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                              child: Container(
+                                                  height: 200,
+                                                  padding: EdgeInsets.all(10),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        'Do you want to unsave ${title}',
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 12,
+                                                      ),
+                                                      ElevatedButton(
+                                                        onPressed: () {
+                                                          animeBox.delete(key);
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text('Yes'),
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                primary:
+                                                                    myPrimaryColor,
+                                                                onPrimary:
+                                                                    Colors
+                                                                        .white),
+                                                      ),
+                                                    ],
+                                                  )),
                                             ),
                                           );
                                         });
@@ -194,22 +222,76 @@ class _FavouritePageState extends State<FavouritePage> {
                                                   SizedBox(
                                                     height: 10,
                                                   ),
-                                                  SizedBox(
-                                                    child: Text(
-                                                      "Adventure fiction",
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: Color.fromRGBO(
-                                                            0, 0, 0, 0.65),
-                                                      ),
-                                                    ),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width -
-                                                            165,
+                                                  FutureBuilder<
+                                                      CategoryListResponse>(
+                                                    future: ApiService()
+                                                        .getRelatedCategoryList(
+                                                            snapshot
+                                                                .data!
+                                                                .data
+                                                                .relationships
+                                                                .categories
+                                                                .links
+                                                                .related,
+                                                            1,
+                                                            0),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      switch (snapshot
+                                                          .connectionState) {
+                                                        case ConnectionState
+                                                            .waiting:
+                                                          return Wrap(
+                                                            children: [
+                                                              SizedBox(
+                                                                child:
+                                                                    const CircularProgressIndicator(),
+                                                                width: 10,
+                                                                height: 10,
+                                                              ),
+                                                            ],
+                                                          );
+                                                        default:
+                                                          if (snapshot
+                                                              .hasError) {
+                                                            return Center(
+                                                              child: Text(snapshot
+                                                                  .error
+                                                                  .toString()),
+                                                            );
+                                                          } else {
+                                                            return SizedBox(
+                                                              width: 150,
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data!
+                                                                    .data
+                                                                    .first
+                                                                    .attributes
+                                                                    .title,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          0,
+                                                                          0,
+                                                                          0,
+                                                                          0.65),
+                                                                ),
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .fade,
+                                                                maxLines: 2,
+                                                                softWrap: true,
+                                                              ),
+                                                            );
+                                                          }
+                                                      }
+                                                    },
                                                   ),
                                                 ],
                                               ),

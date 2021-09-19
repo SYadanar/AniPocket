@@ -14,8 +14,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-//import 'package:path_provider/path_provider.dart';
-//import 'package:anime_app/Widgets/For_Storage/on_tap.dart';
 import 'package:anime_app/main.dart';
 late Box animeBox;
 
