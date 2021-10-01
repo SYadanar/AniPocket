@@ -1,17 +1,24 @@
 # anime_app
 
-A new Flutter project of the class "Handful Programming with Java and Flutter"
+Final Flutter project for the class "Handful Programming with Java and Flutter"
 
-## Pages to Code
-1.  Landing Page
-2.  Home Page
-3.  Categories Page
-4.  [Current Year] Releases Page
-5.  User Favourites Page
-6.  Movie Detail Page
-7.  Characters Page
-8.  Character Detail Page
-9.  Search By Anime Name
+This project is made together with my project partner [Keyo Emochi](https://github.com/Keyo-creater)
+
+### API Used in this Project
+  - Kitsu API
+### Dependencies Used in this Project
+  - auto_route
+  - dio
+  - infinite_scroll_pagination
+  - json_serializable
+  - flutter_html
+  - google_fonts
+  - hive
+  - hive_flutter
+  - path_provider
+  - shared_preferences
+  - sticky_headers
+  - youtuve_player_flutter
 
 ## Getting Started
 
