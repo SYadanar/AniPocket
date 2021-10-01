@@ -18,7 +18,7 @@ This project is made together with my project partner [Keyo Emochi](https://gith
   - path_provider
   - shared_preferences
   - sticky_headers
-  - youtuve_player_flutter
+  - youtube_player_flutter
 
 [Presentation Slide](https://docs.google.com/presentation/d/1AUYBn08JRYIQLi_xlx37B8IohOCEkflmP2BQKqNuJ1Y/edit?usp=sharing) & [Demo Show Time](https://youtu.be/9MjEWDr9ov8)
 
