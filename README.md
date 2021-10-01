@@ -1,6 +1,6 @@
 # anime_app
 
-A new Flutter project.
+A new Flutter project of the class "Handful Programming with Java and Flutter"
 
 ## Pages to Code
 1.  Landing Page
