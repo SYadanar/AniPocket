@@ -1,6 +1,6 @@
 # AniPocket (Browse Anime ANYTIME, ANYWHERE)
 
-Final Flutter project for the class "Handful Programming with Java and Flutter"
+Final Flutter project for the class **"Handful Programming with Java and Flutter"**
 
 This project is made together with my project partner [Keyo Emochi](https://github.com/Keyo-creater)
 
